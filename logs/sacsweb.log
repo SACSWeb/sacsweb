@@ -1,0 +1,20 @@
+[2025-08-24 23:47:42] [info] Sistema SACSWeb Educacional iniciado
+[2025-08-24 23:47:42] [info] Sistema de configuração carregado com sucesso
+[2025-08-24 23:47:48] [info] Sistema SACSWeb Educacional iniciado
+[2025-08-24 23:47:48] [info] Sistema de configuração carregado com sucesso
+[2025-08-24 23:47:50] [info] Sistema SACSWeb Educacional iniciado
+[2025-08-24 23:47:50] [info] Sistema de configuração carregado com sucesso
+[2025-08-24 23:47:50] [error] Erro ao carregar exercício: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.dificuldade' in 'order clause'
+[2025-08-24 23:47:58] [info] Sistema SACSWeb Educacional iniciado
+[2025-08-24 23:47:58] [info] Sistema de configuração carregado com sucesso
+[2025-08-24 23:48:01] [info] Sistema SACSWeb Educacional iniciado
+[2025-08-24 23:48:01] [info] Sistema de configuração carregado com sucesso
+[2025-08-24 23:48:01] [error] Erro ao carregar exercício: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.dificuldade' in 'order clause'
+[2025-08-24 23:48:07] [info] Sistema SACSWeb Educacional iniciado
+[2025-08-24 23:48:07] [info] Sistema de configuração carregado com sucesso
+[2025-08-24 23:48:15] [info] Sistema SACSWeb Educacional iniciado
+[2025-08-24 23:48:15] [info] Sistema de configuração carregado com sucesso
+[2025-08-24 23:48:26] [info] Sistema SACSWeb Educacional iniciado
+[2025-08-24 23:48:26] [info] Sistema de configuração carregado com sucesso
+[2025-08-24 23:48:28] [info] Sistema SACSWeb Educacional iniciado
+[2025-08-24 23:48:28] [info] Sistema de configuração carregado com sucesso
