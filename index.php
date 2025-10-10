@@ -358,8 +358,13 @@ $messages = getFlashMessages();
                                     <label for="registerUsername" class="form-label">
                                         <i class="fas fa-at"></i> Nome de Usuário
                                     </label>
-                                    <input type="text" class="form-control" id="registerUsername" name="username" required>
-                                    <div class="form-text">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="registerUsername" name="username" required>
+                                        <button class="btn btn-outline-primary" type="button" id="checkUsernameBtn">
+                                            Verificar
+                                        </button>
+                                    </div>
+                                    <div class="form-text" id="usernameHelp">
                                         Mínimo 3 caracteres, apenas letras, números e underscore
                                     </div>
                                 </div>
@@ -533,10 +538,64 @@ $messages = getFlashMessages();
 
             // Validação do formulário de registro
             const registerForm = document.getElementById('registerForm');
+            const registerUsername = document.getElementById('registerUsername');
+            const checkUsernameBtn = document.getElementById('checkUsernameBtn');
+            const usernameHelp = document.getElementById('usernameHelp');
+            let lastCheckedUsername = '';
+            let usernameAvailable = false;
+
+            async function checkUsernameAvailability(username) {
+                if (!username || username.length < 3) {
+                    usernameHelp.className = 'form-text text-danger';
+                    usernameHelp.textContent = 'Informe um nome de usuário válido (mínimo 3 caracteres)';
+                    usernameAvailable = false;
+                    return;
+                }
+                usernameHelp.className = 'form-text';
+                usernameHelp.textContent = 'Verificando...';
+                try {
+                    const response = await fetch('auth/check_username.php?username=' + encodeURIComponent(username), {
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    const data = await response.json();
+                    if (data.available) {
+                        usernameHelp.className = 'form-text text-success';
+                        usernameHelp.textContent = 'Nome de usuário disponível';
+                        usernameAvailable = true;
+                    } else {
+                        usernameHelp.className = 'form-text text-danger';
+                        usernameHelp.textContent = data.message || 'Este nome de usuário já está em uso';
+                        usernameAvailable = false;
+                    }
+                } catch (e) {
+                    usernameHelp.className = 'form-text text-danger';
+                    usernameHelp.textContent = 'Erro ao verificar disponibilidade. Tente novamente.';
+                    usernameAvailable = false;
+                }
+                lastCheckedUsername = username;
+            }
+
+            if (checkUsernameBtn && registerUsername) {
+                checkUsernameBtn.addEventListener('click', function() {
+                    checkUsernameAvailability(registerUsername.value.trim());
+                });
+                registerUsername.addEventListener('blur', function() {
+                    const current = registerUsername.value.trim();
+                    if (current && current !== lastCheckedUsername) {
+                        checkUsernameAvailability(current);
+                    }
+                });
+                registerUsername.addEventListener('input', function() {
+                    usernameAvailable = false; // invalidar verificação ao digitar
+                    usernameHelp.className = 'form-text';
+                    usernameHelp.textContent = 'Mínimo 3 caracteres, apenas letras, números e underscore';
+                });
+            }
             if (registerForm) {
                 registerForm.addEventListener('submit', function(e) {
                     const password = document.getElementById('registerPassword').value;
                     const confirmPassword = document.getElementById('registerConfirmPassword').value;
+                    const username = registerUsername ? registerUsername.value.trim() : '';
                     
                     if (password !== confirmPassword) {
                         e.preventDefault();
@@ -547,6 +606,18 @@ $messages = getFlashMessages();
                     if (password.length < 8) {
                         e.preventDefault();
                         alert('A senha deve ter pelo menos 8 caracteres!');
+                        return false;
+                    }
+
+                    if (username.length < 3 || !/^[_a-zA-Z0-9]+$/.test(username)) {
+                        e.preventDefault();
+                        alert('Informe um nome de usuário válido (mínimo 3 caracteres, apenas letras, números e underscore)');
+                        return false;
+                    }
+
+                    if (!usernameAvailable) {
+                        e.preventDefault();
+                        alert('Por favor, verifique a disponibilidade do nome de usuário.');
                         return false;
                     }
                 });

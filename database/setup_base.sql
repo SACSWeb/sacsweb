@@ -11,6 +11,7 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `senha_hash` varchar(255) NOT NULL,
   `tipo_usuario` enum('admin','professor','aluno') NOT NULL DEFAULT 'aluno',
   `nivel_conhecimento` enum('iniciante','intermediario','avancado') DEFAULT 'iniciante',
@@ -18,7 +19,8 @@ CREATE TABLE `usuarios` (
   `ultimo_acesso` timestamp NULL DEFAULT NULL,
   `ativo` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uk_usuarios_email` (`email`)
+  UNIQUE KEY `uk_usuarios_email` (`email`),
+  UNIQUE KEY `uk_usuarios_username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tabela de módulos
@@ -100,8 +102,8 @@ CREATE TABLE `logs_atividade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Inserir usuário admin padrão
-INSERT INTO `usuarios` (`nome`, `email`, `senha_hash`, `tipo_usuario`, `nivel_conhecimento`, `ativo`) VALUES
-('Administrador', 'admin', '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', 'avancado', 1);
+INSERT INTO `usuarios` (`nome`, `email`, `username`, `senha_hash`, `tipo_usuario`, `nivel_conhecimento`, `ativo`) VALUES
+('Administrador', 'admin@sacsweb.com', 'admin', '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', 'avancado', 1);
 
 -- Inserir log de criação do banco
 INSERT INTO `logs_atividade` (`acao`, `detalhes`, `ip_address`) VALUES

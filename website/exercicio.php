@@ -693,7 +693,7 @@ if ($exercicio['tipo'] === 'quiz') {
         <div class="header">
             <div class="header-content">
                 <div class="header-left">
-                    <a href="exercicios.php" class="back-btn">
+                    <a onclick="window.history.back(); return false;" class="back-btn">
                         <i class="fas fa-arrow-left"></i>
                         Voltar
                     </a>

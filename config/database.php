@@ -99,7 +99,7 @@ function getCurrentUser() {
     
     try {
         $pdo = connectDatabase();
-        $stmt = $pdo->prepare("SELECT id, nome, email, tipo_usuario, nivel_conhecimento FROM usuarios WHERE id = ?");
+        $stmt = $pdo->prepare("SELECT id, nome, email, tipo_usuario, nivel_conhecimento, data_cadastro FROM usuarios WHERE id = ?");
         $stmt->execute([$_SESSION['user_id']]);
         return $stmt->fetch();
     } catch (PDOException $e) {

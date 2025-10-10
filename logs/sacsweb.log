@@ -18,3 +18,510 @@
 [2025-08-24 23:48:26] [info] Sistema de configuração carregado com sucesso
 [2025-08-24 23:48:28] [info] Sistema SACSWeb Educacional iniciado
 [2025-08-24 23:48:28] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:14:49] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:14:49] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:15:17] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:15:17] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:15:17] [error] Erro no registro: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 08:15:17] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:15:17] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:15:26] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:15:26] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:15:26] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 08:15:26] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:15:26] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:15:26] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:15:26] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:16:25] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:16:25] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:16:25] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:16:25] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:16:28] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:16:28] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:16:28] [error] Erro ao registrar logout: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 08:16:28] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:16:28] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:24:36] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:24:36] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:24:36] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 08:24:36] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:24:36] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:24:37] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:24:37] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:24:44] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:24:44] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:38:08] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:38:08] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:41:39] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:41:39] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:45:10] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:45:10] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:45:11] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:45:11] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:45:32] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:45:32] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:45:32] [error] Erro ao registrar logout: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 08:45:32] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:45:32] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:45:39] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:45:39] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:45:39] [warning] Tentativa de login falhada para: Jhow
+[2025-10-10 08:45:39] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:45:39] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:47:32] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:47:32] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:47:39] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:47:39] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:47:39] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:47:39] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:47:46] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:47:46] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:47:46] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:47:46] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:48:40] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:48:40] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:48:44] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:48:44] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:48:44] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'field list'
+[2025-10-10 08:48:44] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:48:44] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:48:49] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:48:49] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:48:49] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'field list'
+[2025-10-10 08:48:49] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:48:49] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:49:02] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:49:02] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:49:02] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'field list'
+[2025-10-10 08:49:02] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:49:02] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:49:20] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:49:20] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:49:24] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:49:24] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:49:24] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:49:24] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:49:49] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:49:49] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:49:52] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:49:52] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:49:53] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 08:49:53] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:49:53] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:49:53] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:49:53] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:49:54] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:49:54] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:49:54] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:49:54] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:49:57] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:49:57] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 08:49:57] [error] Erro ao registrar logout: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 08:49:57] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 08:49:57] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:00:05] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:00:05] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:00:05] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:00:05] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:00:05] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:00:05] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:00:05] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:00:37] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:00:37] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:00:45] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:00:45] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:01:09] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:01:09] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:01:13] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:01:13] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:01:17] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:01:17] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:01:23] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:01:23] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:06:59] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:06:59] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:07:01] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:07:01] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:07:01] [error] Erro ao registrar logout: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:07:01] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:07:01] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:07:08] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:07:08] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:07:08] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'where clause'
+[2025-10-10 09:07:08] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:07:08] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:07:14] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:07:14] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:07:14] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'where clause'
+[2025-10-10 09:07:14] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:07:14] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:12:15] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:12:15] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:12:19] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:12:19] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:12:19] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'where clause'
+[2025-10-10 09:12:19] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:12:19] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:13:52] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:13:52] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:14:13] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:14:13] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:14:13] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:14:24] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:14:24] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:16:24] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:16:24] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:16:29] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:16:29] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:16:35] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:16:35] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:16:36] [error] Erro no registro: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:16:36] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:16:36] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:16:48] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:16:48] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:16:48] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:16:48] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:16:48] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:16:48] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:16:48] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:16:52] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:16:52] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:16:52] [error] Erro ao registrar logout: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:16:52] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:16:52] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:16:56] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:16:56] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:16:56] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:16:56] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:16:56] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:16:56] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:16:56] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:17:01] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:17:01] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:17:01] [error] Erro ao registrar logout: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:17:01] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:17:01] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:17:22] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:17:22] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:17:22] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:17:22] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:17:47] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:17:47] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:17:47] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:17:47] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:17:48] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:17:48] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:17:48] [error] Erro no registro: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:17:49] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:17:49] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:18:17] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:18:17] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:18:40] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:18:40] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:18:40] [warning] Tentativa de login falhada para: admin
+[2025-10-10 09:18:40] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:18:40] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:18:52] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:18:52] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:18:52] [warning] Tentativa de login falhada para: Administrador
+[2025-10-10 09:18:52] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:18:52] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:25] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:25] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:26] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:20:26] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:26] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:26] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:26] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:45] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:45] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:46] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:46] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:46] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:46] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:46] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:46] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:47] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:47] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:47] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:47] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:47] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:47] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:47] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:47] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:47] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:47] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:48] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:48] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:48] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:48] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:48] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:48] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:48] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:48] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:48] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:48] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:49] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:49] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:49] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:49] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:49] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:49] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:49] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:49] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:50] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:50] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:50] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:50] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:50] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:50] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:50] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:50] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:50] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:50] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:51] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:51] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:51] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:51] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:51] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:51] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:51] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:51] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:51] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:51] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:51] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:51] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:52] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:52] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:52] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:52] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:52] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:52] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:52] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:52] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:52] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:52] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:58] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:58] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:20:58] [error] Erro ao registrar logout: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:20:58] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:20:58] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:21:18] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:21:18] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:21:23] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:21:23] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:21:23] [error] Erro no registro: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:21:23] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:21:23] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:21:31] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:21:31] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:21:31] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:21:31] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:21:31] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:21:31] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:21:31] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:22:18] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:22:18] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:22:21] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:22:21] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:22:21] [error] Erro ao carregar exercício: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.dificuldade' in 'order clause'
+[2025-10-10 09:23:35] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:23:35] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:23:40] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:23:40] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:23:40] [error] Erro ao carregar exercício: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.dificuldade' in 'order clause'
+[2025-10-10 09:23:48] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:23:48] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:23:54] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:23:54] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:23:57] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:23:57] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:23:57] [error] Erro ao carregar exercício: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.dificuldade' in 'order clause'
+[2025-10-10 09:23:59] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:23:59] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:24:00] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:24:00] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:24:03] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:24:03] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:24:07] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:24:07] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:24:07] [error] Erro ao carregar exercício: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.dificuldade' in 'order clause'
+[2025-10-10 09:24:07] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:24:07] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:25:16] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:25:16] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:25:16] [error] Erro ao carregar exercício: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.dificuldade' in 'order clause'
+[2025-10-10 09:26:08] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:26:08] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:26:08] [error] Erro ao carregar exercício: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.dificuldade' in 'order clause'
+[2025-10-10 09:28:38] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:28:38] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:28:43] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:28:43] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:28:45] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:28:45] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:28:47] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:28:47] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:28:47] [error] Erro ao carregar exercício: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.dificuldade' in 'order clause'
+[2025-10-10 09:28:48] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:28:48] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:30:28] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:30:28] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:30:28] [error] Erro ao carregar exercício: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.dificuldade' in 'order clause'
+[2025-10-10 09:30:30] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:30:30] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:30:31] [error] Erro ao carregar exercício: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.dificuldade' in 'order clause'
+[2025-10-10 09:30:33] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:30:33] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:30:33] [error] Erro ao carregar exercício: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.dificuldade' in 'order clause'
+[2025-10-10 09:31:20] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:31:20] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:31:31] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:31:31] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:31:34] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:31:34] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:32:01] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:32:01] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:32:01] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:32:01] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:26] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:26] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:27] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:27] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:27] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:27] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:27] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:27] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:27] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:27] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:28] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:28] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:28] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:28] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:28] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:28] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:28] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:28] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:28] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:28] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:29] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:29] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:30] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:30] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:31] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:31] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:31] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:31] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:32] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:32] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:32] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:32] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:32] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:32] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:32] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:32] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:32] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:32] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:32] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:32] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:33] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:33] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:33] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:33] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:33] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:33] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:33] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:33] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:34] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:34] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:35] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:35] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:37] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:37] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:38] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:38] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:38] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:38] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:39] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:39] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:39] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:39] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:39] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:39] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:39] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:39] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:36:39] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:36:39] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:37:34] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:37:34] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:37:34] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:37:34] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:37:35] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:37:35] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:37:35] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:37:35] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:37:35] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:37:35] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:37:35] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:37:35] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:37:35] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:37:35] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:37:35] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:37:35] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:37:48] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:37:48] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:37:48] [error] Erro ao conectar ao banco de dados: SQLSTATE[HY000] [1049] Unknown database 'sacsweb_educacional'
+[2025-10-10 09:37:55] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:37:55] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:37:55] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:37:55] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:37:55] [error] Erro ao conectar ao banco de dados: SQLSTATE[HY000] [1049] Unknown database 'sacsweb_educacional'
+[2025-10-10 09:38:11] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:38:11] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:38:21] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:38:21] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:38:21] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:38:21] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:38:30] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:38:30] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:38:30] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:38:30] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:38:41] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:38:41] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:38:41] [error] Erro no registro: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:38:41] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:38:41] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:38:45] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:38:45] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:38:45] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:38:45] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:38:45] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:38:45] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:38:45] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:38:51] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:38:51] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:44:42] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:44:42] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:44:42] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:44:42] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:44:45] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:44:45] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:44:45] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:44:45] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:44:51] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:44:51] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:45:09] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:45:09] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:45:09] [error] Erro no registro: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:45:09] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:45:09] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:45:17] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:45:17] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:45:17] [error] Erro no login: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descricao' in 'field list'
+[2025-10-10 09:45:17] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:45:17] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:45:17] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:45:17] [info] Sistema de configuração carregado com sucesso
+[2025-10-10 09:45:21] [info] Sistema SACSWeb Educacional iniciado
+[2025-10-10 09:45:21] [info] Sistema de configuração carregado com sucesso

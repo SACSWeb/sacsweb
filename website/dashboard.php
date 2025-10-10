@@ -203,8 +203,8 @@ $messages = getFlashMessages();
                     <p class="mb-0">
                         <i class="fas fa-graduation-cap"></i> 
                         Nível: <strong><?= ucfirst($user['nivel_conhecimento']) ?></strong> | 
-                        <i class="fas fa-calendar"></i> 
-                        Membro desde: <strong><?= formatarData($user['data_cadastro'] ?? date('Y-m-d H:i:s')) ?></strong>
+                        <i class="fas fa-calendar text-primary"></i> 
+                        Membro desde: <?= !empty($user['data_cadastro']) ? formatarData($user['data_cadastro']) : 'Data não disponível' ?>
                     </p>
                 </div>
             </div>
@@ -402,12 +402,9 @@ $messages = getFlashMessages();
                         
                         <div class="text-start small">
                             <p class="mb-1">
-                                <i class="fas fa-calendar text-primary"></i> 
-                                Membro desde: <?= formatarData($user['data_cadastro'] ?? date('Y-m-d H:i:s')) ?>
-                            </p>
-                            <p class="mb-1">
-                                <i class="fas fa-clock text-success"></i> 
-                                Último acesso: <?= formatarData($user['ultimo_acesso'] ?? date('Y-m-d H:i:s')) ?>
+                            <i class="fas fa-calendar text-primary"></i> 
+                            Membro desde: <?= !empty($user['data_cadastro']) ? formatarData($user['data_cadastro']) : 'Data não disponível' ?>
+
                             </p>
                             <p class="mb-0">
                                 <i class="fas fa-star text-warning"></i> 

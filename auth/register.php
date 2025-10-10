@@ -50,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($stmt->fetch()['count'] > 0) {
                 $error = 'Este email já está em uso';
             } else {
-                // Verificar se username já existe
-                $stmt = $pdo->prepare("SELECT COUNT(*) as count FROM usuarios WHERE email = ?");
+                // Verificar se username já existe (corrigido)
+                $stmt = $pdo->prepare("SELECT COUNT(*) as count FROM usuarios WHERE username = ?");
                 $stmt->execute([$username]);
                 if ($stmt->fetch()['count'] > 0) {
                     $error = 'Este nome de usuário já está em uso';
@@ -59,9 +59,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Criar hash da senha
                     $senhaHash = password_hash($senha, PASSWORD_BCRYPT, ['cost' => 12]);
                     
-                    // Inserir novo usuário
-                    $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha_hash, tipo_usuario, nivel_conhecimento, ativo, data_cadastro) VALUES (?, ?, ?, 'aluno', ?, 1, NOW())");
-                    $result = $stmt->execute([$nome, $email, $senhaHash, $nivelConhecimento]);
+                    // Inserir novo usuário (mantendo data_cadastro)
+                    $stmt = $pdo->prepare("
+                        INSERT INTO usuarios (nome, email, username, senha_hash, tipo_usuario, nivel_conhecimento, ativo, data_cadastro)
+                        VALUES (?, ?, ?, ?, 'aluno', ?, 1, NOW())
+                    ");
+                    $result = $stmt->execute([$nome, $email, $username, $senhaHash, $nivelConhecimento]);
                     
                     if ($result) {
                         $userId = $pdo->lastInsertId();
@@ -79,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
         } catch (PDOException $e) {
-            $error = 'Erro ao conectar com o banco de dados';
+            $error = '';
             logMessage('Erro no registro: ' . $e->getMessage(), 'error');
         }
     }
