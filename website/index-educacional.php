@@ -125,6 +125,22 @@ try {
 } catch (Exception $e) {
     logMessage('Erro ao buscar estatísticas: ' . $e->getMessage(), 'error');
 }
+
+$assetsBaseUrl = defined('ASSETS_URL') ? ASSETS_URL : '../assets';
+$preferenceDefaults = function_exists('getDefaultPreferences') ? getDefaultPreferences() : [
+    'tema' => 'dark',
+    'tamanho_fonte' => 'medio',
+    'alto_contraste' => 0,
+    'reduzir_animacoes' => 0,
+    'leitor_tela' => 0,
+    'espacamento' => 'normal',
+    'densidade_info' => 'media',
+    'notificacoes_email' => 1,
+    'notificacoes_push' => 0
+];
+$userPreferences = function_exists('getUserPreferences')
+    ? getUserPreferences($loggedIn && $user ? (int)$user['id'] : null)
+    : $preferenceDefaults;
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -132,93 +148,21 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SACSWeb Educacional - Sistema de Ensino de Ataques Cibernéticos</title>
+    <link rel="icon" type="image/png" href="<?= ASSETS_URL ?>/images/icone.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            min-height: 100vh; 
-        }
-        .hero-section { 
-            background: rgba(255,255,255,0.95); 
-            border-radius: 20px; 
-            backdrop-filter: blur(10px);
-            margin-bottom: 2rem;
-        }
-        .feature-card { 
-            background: rgba(255,255,255,0.9); 
-            border-radius: 15px; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-        }
-        .feature-card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-        .stats-card { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            color: white; 
-            border-radius: 15px;
-        }
-        .login-form { 
-            background: rgba(255,255,255,0.95); 
-            border-radius: 15px; 
-            backdrop-filter: blur(10px);
-        }
-        .btn-primary { 
-            background: #667eea; 
-            border-color: #667eea; 
-        }
-        .btn-primary:hover { 
-            background: #5a6fd8; 
-            border-color: #5a6fd8; 
-        }
-        .navbar-brand { 
-            font-weight: bold; 
-            font-size: 1.5rem; 
-        }
-        .hero-title { 
-            font-size: 3rem; 
-            font-weight: bold; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .feature-icon { 
-            font-size: 3rem; 
-            color: #667eea; 
-            margin-bottom: 1rem; 
-        }
-        .progress-ring { 
-            width: 120px; 
-            height: 120px; 
-            margin: 0 auto; 
-        }
-        .progress-ring circle { 
-            fill: none; 
-            stroke: #667eea; 
-            stroke-width: 8; 
-            stroke-linecap: round; 
-            transform: rotate(-90deg); 
-            transform-origin: 50% 50%; 
-        }
-        .progress-ring .progress-bg { 
-            stroke: #e9ecef; 
-        }
-        .progress-ring .progress-fill { 
-            stroke-dasharray: 283; 
-            stroke-dashoffset: 283; 
-            transition: stroke-dashoffset 0.5s ease; 
-        }
-    </style>
+    <link href="<?= $assetsBaseUrl ?>/css/sacsweb-unified.css" rel="stylesheet">
+    <script>
+        window.SACSWEB_PREFERENCES = <?= json_encode($userPreferences, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
+    </script>
+    <script src="<?= $assetsBaseUrl ?>/js/preferences.js" defer></script>
 </head>
-<body>
+<body class="page-index-educacional">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-shield-alt"></i> SACSWeb Educacional
+                <img src="<?= $assetsBaseUrl ?>/images/icone.png" alt="SACSWeb Logo" style="height: 40px; margin-right: 10px;"> <span class="text-primary">SACSWeb</span> <span>Educacional</span>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -362,7 +306,7 @@ try {
                         <i class="fas fa-book-open"></i>
                     </div>
                     <h4>Teoria Completa</h4>
-                    <p class="text-muted">
+                    <p class="text-light">
                         Explicações detalhadas sobre cada tipo de ataque cibernético, 
                         como funcionam e por que acontecem.
                     </p>
@@ -375,7 +319,7 @@ try {
                         <i class="fas fa-code"></i>
                     </div>
                     <h4>Exercícios Práticos</h4>
-                    <p class="text-muted">
+                    <p class="text-light">
                         Aplique o conhecimento em exercícios práticos de código 
                         e simulações de vulnerabilidades.
                     </p>
@@ -388,7 +332,7 @@ try {
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h4>Medidas de Proteção</h4>
-                    <p class="text-muted">
+                    <p class="text-light">
                         Aprenda as melhores práticas para proteger sistemas 
                         contra ataques cibernéticos.
                     </p>
@@ -418,7 +362,7 @@ try {
                                     <i class="fas fa-<?php echo $categoria['icone']; ?>"></i>
                                 </div>
                                 <h4><?php echo htmlspecialchars($categoria['nome']); ?></h4>
-                                <p class="text-muted">
+                                <p class="text-light">
                                     <?php echo htmlspecialchars($categoria['descricao']); ?>
                                 </p>
                                 <?php if ($loggedIn): ?>

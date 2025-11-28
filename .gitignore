@@ -1,0 +1,56 @@
+# Logs
+logs/*.log
+*.log
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.*.local
+config/config.env
+config/config.php
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Node modules (se houver)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Arquivos de build
+dist/
+build/
+*.min.js
+*.min.css
+
+# Arquivos de backup do banco
+*.sql.bak
+*.sql.gz
+
+# Arquivos de sessão PHP
+sess_*
+
+# Arquivos de cache
+cache/
+tmp/
+temp/
+
+# Arquivos de upload (se houver)
+uploads/
+user_uploads/
+
+# Arquivos de configuração local
+config.local.php
+database.local.php
+

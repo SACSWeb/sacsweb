@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $pdo = connectDatabase();
             
-            // Buscar usuário por email ou por nome de usuário
-            $stmt = $pdo->prepare("SELECT id, nome, email, senha_hash, tipo_usuario, nivel_conhecimento, ativo FROM usuarios WHERE (email = ? OR username = ?) AND ativo = 1");
+            // Buscar usuário por email ou username
+            $stmt = $pdo->prepare("SELECT id, nome, email, senha_hash, tipo_usuario, nivel_conhecimento, ativo FROM usuarios WHERE (email = ? OR email = ?) AND ativo = 1");
             $stmt->execute([$email, $email]);
             $user = $stmt->fetch();
             

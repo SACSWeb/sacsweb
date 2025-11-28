@@ -99,7 +99,7 @@ function getCurrentUser() {
     
     try {
         $pdo = connectDatabase();
-        $stmt = $pdo->prepare("SELECT id, nome, email, tipo_usuario, nivel_conhecimento, data_cadastro FROM usuarios WHERE id = ?");
+        $stmt = $pdo->prepare("SELECT id, nome, email, username, tipo_usuario, nivel_conhecimento, foto_perfil FROM usuarios WHERE id = ?");
         $stmt->execute([$_SESSION['user_id']]);
         return $stmt->fetch();
     } catch (PDOException $e) {
@@ -127,6 +127,90 @@ function generateCSRFToken() {
 // Função para validar token CSRF
 function validateCSRFToken($token) {
     return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
+}
+
+/**
+ * Retorna os valores padrão de preferências de acessibilidade e tema.
+ */
+function getDefaultPreferences(): array {
+    return [
+        'tema' => 'dark',
+        'tamanho_fonte' => 'medio',
+        'alto_contraste' => 0,
+        'reduzir_animacoes' => 0,
+        'leitor_tela' => 0,
+        'espacamento' => 'normal',
+        'densidade_info' => 'media',
+        'notificacoes_email' => 1,
+        'notificacoes_push' => 0
+    ];
+}
+
+/**
+ * Busca as preferências do usuário, garantindo fallback seguro e cache simples.
+ */
+function getUserPreferences(?int $userId, bool $forceRefresh = false): array {
+    $defaults = getDefaultPreferences();
+
+    if (!$userId) {
+        return $defaults;
+    }
+
+    static $preferencesCache = [];
+
+    if ($forceRefresh && isset($preferencesCache[$userId])) {
+        unset($preferencesCache[$userId]);
+    }
+
+    if (isset($preferencesCache[$userId])) {
+        return $preferencesCache[$userId];
+    }
+
+    try {
+        $pdo = connectDatabase();
+        $stmt = $pdo->prepare("
+            SELECT tema, tamanho_fonte, alto_contraste, reduzir_animacoes, leitor_tela,
+                   espacamento, densidade_info, notificacoes_email, notificacoes_push
+            FROM usuario_preferencias
+            WHERE usuario_id = ?
+        ");
+        $stmt->execute([$userId]);
+        $preferencias = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$preferencias) {
+            $insert = $pdo->prepare("
+                INSERT INTO usuario_preferencias (
+                    usuario_id, tema, tamanho_fonte, alto_contraste, reduzir_animacoes,
+                    leitor_tela, espacamento, densidade_info, notificacoes_email, notificacoes_push
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ");
+            $insert->execute([
+                $userId,
+                $defaults['tema'],
+                $defaults['tamanho_fonte'],
+                $defaults['alto_contraste'],
+                $defaults['reduzir_animacoes'],
+                $defaults['leitor_tela'],
+                $defaults['espacamento'],
+                $defaults['densidade_info'],
+                $defaults['notificacoes_email'],
+                $defaults['notificacoes_push']
+            ]);
+            $preferencias = $defaults;
+        } else {
+            $preferencias = array_merge($defaults, $preferencias);
+        }
+
+        foreach (['alto_contraste', 'reduzir_animacoes', 'leitor_tela', 'notificacoes_email', 'notificacoes_push'] as $flag) {
+            $preferencias[$flag] = (int)($preferencias[$flag] ?? 0);
+        }
+
+        $preferencesCache[$userId] = $preferencias;
+        return $preferencias;
+    } catch (PDOException $e) {
+        logMessage('Erro ao carregar preferências do usuário: ' . $e->getMessage(), 'error');
+        return $defaults;
+    }
 }
 
 // Inicializar log

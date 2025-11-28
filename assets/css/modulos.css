@@ -1,0 +1,37 @@
+/**
+ * SACSWeb Educacional - Estilos da Página de Módulos
+ * Estilos específicos para a página de módulos de aprendizado
+ * Versão: 2.1.0
+ */
+
+.level-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 15px;
+}
+
+.level-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.level-iniciante { border-left: 5px solid #28a745; }
+.level-intermediario { border-left: 5px solid #ffc107; }
+.level-avancado { border-left: 5px solid #dc3545; }
+
+.module-item {
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.module-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.progress-custom {
+    height: 8px;
+    border-radius: 10px;
+}
+

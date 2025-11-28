@@ -8,6 +8,7 @@ require_once '../config/config.php';
 requireLogin();
 
 $user = getCurrentUser();
+$userPreferences = getUserPreferences($user['id'] ?? null);
 $pdo = connectDatabase();
 
 // Verificar se foi passado um ID de módulo
@@ -44,6 +45,19 @@ $stmt = $pdo->prepare("
 $stmt->execute([$modulo_id]);
 $exercicios = $stmt->fetchAll();
 
+// Separar quizzes dos outros exercícios
+$quizzes = [];
+$outros_exercicios = [];
+foreach ($exercicios as $exercicio) {
+    if ($exercicio['tipo'] === 'quiz') {
+        $quizzes[] = $exercicio;
+    } else {
+        $outros_exercicios[] = $exercicio;
+    }
+}
+
+// Quiz agora é processado em quiz_modulo.php
+
 // Buscar módulos relacionados (mesmo nível)
 $stmt = $pdo->prepare("
     SELECT id, titulo, nivel 
@@ -77,41 +91,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['iniciar_modulo'])) {
     }
 }
 
-// Processar conclusão do módulo
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['concluir_modulo'])) {
-    $stmt = $pdo->prepare("
-        UPDATE progresso_usuario 
-        SET progresso = 100, data_conclusao = NOW(), pontos_obtidos = ?
-        WHERE usuario_id = ? AND modulo_id = ?
-    ");
-    $stmt->execute([$modulo['pontos_maximos'], $user['id'], $modulo_id]);
-    
-    // Log da atividade
-    $stmt = $pdo->prepare("
-        INSERT INTO logs_atividade (usuario_id, modulo_id, acao, detalhes, data_hora)
-        VALUES (?, ?, 'conclusao_modulo', ?, NOW())
-    ");
-    $stmt->execute([$user['id'], $modulo_id, "Concluiu o módulo: " . $modulo['titulo']]);
-    
-    redirect("modulo.php?id=$modulo_id");
-}
-
-// Atualizar progresso baseado no tempo de leitura
-if ($modulo['progresso_usuario'] > 0 && $modulo['progresso_usuario'] < 100) {
-    $tempo_estimado = $modulo['tempo_estimado'] * 60; // em segundos
-    $tempo_atual = time() - strtotime($modulo['data_inicio']);
-    $novo_progresso = min(95, ($tempo_atual / $tempo_estimado) * 100);
-    
-    if ($novo_progresso > $modulo['progresso_usuario']) {
-        $stmt = $pdo->prepare("
-            UPDATE progresso_usuario 
-            SET progresso = ? 
-            WHERE usuario_id = ? AND modulo_id = ?
-        ");
-        $stmt->execute([$novo_progresso, $user['id'], $modulo_id]);
-        $modulo['progresso_usuario'] = $novo_progresso;
-    }
-}
+// Processamento de quiz agora está em quiz_modulo.php
+// Progresso baseado em leitura será atualizado via JavaScript/AJAX
+// Máximo de progresso por leitura: 70% (restante 30% vem do quiz)
 ?>
 
 <!DOCTYPE html>
@@ -120,89 +102,22 @@ if ($modulo['progresso_usuario'] > 0 && $modulo['progresso_usuario'] < 100) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($modulo['titulo']) ?> - <?= SISTEMA_NOME ?></title>
+    <link rel="icon" type="image/png" href="<?= ASSETS_URL ?>/images/icone.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .bg-glass {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .module-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px;
-        }
-        
-        .content-section {
-            transition: all 0.3s ease;
-            border-radius: 15px;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .content-section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-        
-        .progress-custom {
-            height: 12px;
-            border-radius: 10px;
-        }
-        
-        .navbar {
-            z-index: 1030;
-        }
-        
-        .dropdown-menu {
-            z-index: 1050 !important;
-        }
-        
-        .code-block {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 15px;
-            border-left: 4px solid #007bff;
-        }
-        
-        .warning-box {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 8px;
-            padding: 15px;
-            border-left: 4px solid #ffc107;
-        }
-        
-        .info-box {
-            background: #d1ecf1;
-            border: 1px solid #bee5eb;
-            border-radius: 8px;
-            padding: 15px;
-            border-left: 4px solid #17a2b8;
-        }
-        
-        .danger-box {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            border-radius: 8px;
-            padding: 15px;
-            border-left: 4px solid #dc3545;
-        }
-    </style>
+    <link href="<?= ASSETS_URL ?>/css/sacsweb-unified.css" rel="stylesheet">
+    <script>
+        window.SACSWEB_PREFERENCES = <?= json_encode($userPreferences, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
+    </script>
+    <script src="<?= ASSETS_URL ?>/js/preferences.js" defer></script>
 </head>
-<body>
+<body class="page-modulo">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-glass navbar-light shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold" href="dashboard.php">
-                <i class="fas fa-shield-alt text-primary"></i> SACSWeb
+                <img src="<?= ASSETS_URL ?>/images/icone.png" alt="SACSWeb Logo" style="height: 40px; margin-right: 10px;"> <span class="text-primary">SACSWeb</span>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -224,6 +139,11 @@ if ($modulo['progresso_usuario'] > 0 && $modulo['progresso_usuario'] < 100) {
                     <li class="nav-item">
                         <a class="nav-link" href="exercicios.php">
                             <i class="fas fa-tasks"></i> Exercícios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ranking.php">
+                            <i class="fas fa-trophy"></i> Ranking
                         </a>
                     </li>
                 </ul>
@@ -342,14 +262,34 @@ if ($modulo['progresso_usuario'] > 0 && $modulo['progresso_usuario'] < 100) {
                 </div>
                 <?php endif; ?>
 
-                <!-- Exercícios -->
-                <?php if (!empty($exercicios)): ?>
-                <div class="content-section bg-glass p-4 mb-4">
+                <!-- Quiz do Módulo -->
+                <?php if (!empty($quizzes)): ?>
+                <div class="content-section bg-glass p-4 mb-4" id="quiz-section">
                     <h3 class="mb-4">
-                        <i class="fas fa-tasks text-success"></i> Exercícios do Módulo
+                        <i class="fas fa-question-circle text-info"></i> Quiz do Módulo
                     </h3>
                     
-                    <?php foreach ($exercicios as $index => $exercicio): ?>
+                    <div class="text-center">
+                        <p class="lead mb-4">Teste seus conhecimentos sobre o conteúdo aprendido</p>
+                        <p class="mb-4">
+                            <i class="fas fa-question-circle text-primary"></i> 
+                            <strong><?= count($quizzes) ?></strong> perguntas disponíveis
+                        </p>
+                        <a href="quiz_modulo.php?id=<?= $modulo_id ?>" class="btn btn-primary btn-lg">
+                            <i class="fas fa-play"></i> Iniciar Quiz
+                        </a>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <!-- Outros Exercícios (não-quiz) -->
+                <?php if (!empty($outros_exercicios)): ?>
+                <div class="content-section bg-glass p-4 mb-4">
+                    <h3 class="mb-4">
+                        <i class="fas fa-tasks text-success"></i> Outros Exercícios
+                    </h3>
+                    
+                    <?php foreach ($outros_exercicios as $index => $exercicio): ?>
                     <div class="card mb-3">
                         <div class="card-body">
                             <h5 class="card-title">
@@ -358,9 +298,7 @@ if ($modulo['progresso_usuario'] > 0 && $modulo['progresso_usuario'] < 100) {
                             </h5>
                             <p class="card-text"><?= htmlspecialchars($exercicio['descricao']) ?></p>
                             
-                            <?php if ($exercicio['tipo'] === 'quiz'): ?>
-                                <span class="badge bg-info">Quiz</span>
-                            <?php elseif ($exercicio['tipo'] === 'codigo'): ?>
+                            <?php if ($exercicio['tipo'] === 'codigo'): ?>
                                 <span class="badge bg-warning">Código</span>
                             <?php else: ?>
                                 <span class="badge bg-secondary">Teórico</span>
@@ -389,7 +327,7 @@ if ($modulo['progresso_usuario'] > 0 && $modulo['progresso_usuario'] < 100) {
                     <?php if ($modulo['progresso_usuario'] > 0): ?>
                         <div class="text-center mb-3">
                             <div class="display-6 fw-bold text-primary"><?= number_format($modulo['progresso_usuario'], 1) ?>%</div>
-                            <small class="text-muted">Concluído</small>
+                            <small>Concluído</small>
                         </div>
                         
                         <div class="progress progress-custom mb-3">
@@ -398,11 +336,11 @@ if ($modulo['progresso_usuario'] > 0 && $modulo['progresso_usuario'] < 100) {
                         
                         <div class="row text-center">
                             <div class="col-6">
-                                <small class="text-muted">Iniciado</small>
+                                <small>Iniciado</small>
                                 <div class="fw-bold"><?= formatarData($modulo['data_inicio']) ?></div>
                             </div>
                             <div class="col-6">
-                                <small class="text-muted">Pontos</small>
+                                <small>Pontos</small>
                                 <div class="fw-bold"><?= $modulo['pontos_obtidos'] ?>/<?= $modulo['pontos_maximos'] ?></div>
                             </div>
                         </div>
@@ -410,14 +348,14 @@ if ($modulo['progresso_usuario'] > 0 && $modulo['progresso_usuario'] < 100) {
                         <?php if ($modulo['data_conclusao']): ?>
                             <hr>
                             <div class="text-center">
-                                <small class="text-muted">Concluído em</small>
+                                <small>Concluído em</small>
                                 <div class="fw-bold text-success"><?= formatarData($modulo['data_conclusao']) ?></div>
                             </div>
                         <?php endif; ?>
                     <?php else: ?>
                         <div class="text-center">
-                            <i class="fas fa-play-circle text-muted" style="font-size: 3rem;"></i>
-                            <p class="text-muted mt-2">Módulo não iniciado</p>
+                            <i class="fas fa-play-circle" style="font-size: 3rem;"></i>
+                            <p class="mt-2">Módulo não iniciado</p>
                             <form method="POST">
                                 <button type="submit" name="iniciar_modulo" class="btn btn-success">
                                     <i class="fas fa-play"></i> Iniciar Agora
@@ -435,14 +373,14 @@ if ($modulo['progresso_usuario'] > 0 && $modulo['progresso_usuario'] < 100) {
                     </h5>
                     
                     <?php foreach ($modulos_relacionados as $mod_rel): ?>
-                    <div class="d-flex align-items-center mb-2 p-2 bg-white rounded">
+                    <div class="d-flex align-items-center mb-2 p-2 rounded">
                         <div class="flex-shrink-0 me-2">
                             <i class="fas fa-book text-primary"></i>
                         </div>
                         <div class="flex-grow-1">
                             <a href="modulo.php?id=<?= $mod_rel['id'] ?>" class="text-decoration-none">
                                 <div class="fw-bold"><?= htmlspecialchars($mod_rel['titulo']) ?></div>
-                                <small class="text-muted"><?= ucfirst($mod_rel['nivel']) ?></small>
+                                <small><?= ucfirst($mod_rel['nivel']) ?></small>
                             </a>
                         </div>
                     </div>
@@ -456,14 +394,14 @@ if ($modulo['progresso_usuario'] > 0 && $modulo['progresso_usuario'] < 100) {
                         <i class="fas fa-lightbulb text-warning"></i> Dicas de Segurança
                     </h5>
                     
-                    <div class="warning-box mb-3">
+                    <div class="warning-box mb-3 text-always-dark">
                         <strong>⚠️ Importante:</strong>
-                        <p class="mb-0">Este conteúdo é para fins educacionais. Nunca teste vulnerabilidades em sistemas reais sem autorização.</p>
+                        <p class="mb-0 text-always-dark">Este conteúdo é para fins educacionais. Nunca teste vulnerabilidades em sistemas reais sem autorização.</p>
                     </div>
                     
-                    <div class="info-box">
+                    <div class="info-box text-always-dark">
                         <strong>💡 Dica:</strong>
-                        <p class="mb-0">Pratique os conceitos em ambientes controlados e sempre siga as melhores práticas de segurança.</p>
+                        <p class="mb-0 text-always-dark">Pratique os conceitos em ambientes controlados e sempre siga as melhores práticas de segurança.</p>
                     </div>
                 </div>
             </div>
@@ -510,6 +448,94 @@ if ($modulo['progresso_usuario'] > 0 && $modulo['progresso_usuario'] < 100) {
                 }
             });
         });
+    </script>
+    
+    <script>
+        // Sistema de Progresso Baseado em Scroll
+        (function() {
+            const MODULO_ID = <?= $modulo_id ?>;
+            const CURRENT_PROGRESS = <?= $modulo['progresso_usuario'] ?? 0 ?>;
+            const CSRF_TOKEN = '<?= generateCSRFToken() ?>';
+            const MAX_READING_PROGRESS = 70;
+            
+            let lastProgressUpdate = CURRENT_PROGRESS;
+            let lastScrollUpdate = 0;
+            const scrollThrottle = 2000; // Atualizar a cada 2 segundos
+            
+            // Função para calcular progresso baseado em scroll
+            function calculateScrollProgress() {
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Calcular porcentagem de scroll (0-100%)
+                const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100;
+                
+                // Converter para progresso de leitura (0-70%)
+                const readingProgress = Math.min(MAX_READING_PROGRESS, (scrollPercentage / 100) * MAX_READING_PROGRESS);
+                
+                return Math.max(0, Math.min(MAX_READING_PROGRESS, readingProgress));
+            }
+            
+            // Função para atualizar progresso via AJAX
+            function updateReadingProgress(newProgress) {
+                if (newProgress <= lastProgressUpdate || newProgress > MAX_READING_PROGRESS) return;
+                
+                fetch('modulo_progresso.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        modulo_id: MODULO_ID,
+                        progresso: newProgress,
+                        csrf_token: CSRF_TOKEN
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        lastProgressUpdate = newProgress;
+                        updateProgressBars(newProgress);
+                    }
+                })
+                .catch(error => console.error('Erro ao atualizar progresso:', error));
+            }
+            
+            // Função para atualizar barras de progresso visuais
+            function updateProgressBars(progress) {
+                document.querySelectorAll('.progress-bar').forEach(bar => {
+                    if (bar && bar.style) {
+                        bar.style.width = progress + '%';
+                    }
+                });
+                
+                // Atualizar texto de progresso se existir
+                const progressTexts = document.querySelectorAll('[data-progress-text]');
+                progressTexts.forEach(text => {
+                    text.textContent = progress.toFixed(1) + '%';
+                });
+            }
+            
+            // Event listener para scroll
+            window.addEventListener('scroll', function() {
+                const now = Date.now();
+                if (now - lastScrollUpdate < scrollThrottle) return;
+                
+                lastScrollUpdate = now;
+                const newProgress = calculateScrollProgress();
+                
+                if (newProgress > lastProgressUpdate) {
+                    updateReadingProgress(newProgress);
+                }
+            }, { passive: true });
+            
+            // Atualizar progresso inicial baseado na posição atual do scroll
+            setTimeout(() => {
+                const initialProgress = calculateScrollProgress();
+                if (initialProgress > lastProgressUpdate) {
+                    updateReadingProgress(initialProgress);
+                }
+            }, 1000);
+        })();
     </script>
 </body>
 </html>

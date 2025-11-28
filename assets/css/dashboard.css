@@ -1,0 +1,61 @@
+/**
+ * SACSWeb Educacional - Estilos do Dashboard
+ * Estilos específicos para a página de dashboard educacional
+ * Versão: 2.1.0
+ */
+
+/* Stats Cards */
+.stats-card {
+    background: linear-gradient(135deg, var(--primary-pink), var(--accent-blue));
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Module Cards */
+.module-card {
+    transition: transform 0.3s ease;
+    background: var(--dark-gray);
+    border: 1px solid var(--light-gray);
+    color: var(--text-light);
+}
+
+.module-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-pink);
+}
+
+/* Activity Icons */
+.activity-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.icon-login { 
+    background: #28a745; 
+    color: white; 
+}
+
+.icon-module { 
+    background: var(--primary-pink); 
+    color: white; 
+}
+
+.icon-exercise { 
+    background: var(--accent-blue); 
+    color: white; 
+}
+
+.icon-quiz { 
+    background: var(--accent-purple); 
+    color: white; 
+}
+

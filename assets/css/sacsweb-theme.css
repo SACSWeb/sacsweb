@@ -1,0 +1,205 @@
+/**
+ * SACSWeb Educacional - Tema CSS Principal
+ * Variáveis CSS globais e estilos base para todo o sistema
+ * Versão: 2.1.0
+ */
+
+/* ========================================
+   VARIÁVEIS CSS (CUSTOM PROPERTIES)
+   ======================================== */
+:root {
+    --primary-pink: #FF1493;
+    --primary-pink-light: #FF69B4;
+    --dark-bg: #0a0a0a;
+    --dark-gray: #1a1a1a;
+    --light-gray: #2a2a2a;
+    --text-light: #e0e0e0;
+    --text-muted: #888;
+    --accent-blue: #00BFFF;
+    --accent-purple: #9370DB;
+    --danger-color: #ff6b6b;
+    --success-color: #51cf66;
+    --warning-color: #ffd43b;
+}
+
+/* ========================================
+   RESET E CONFIGURAÇÕES GLOBAIS
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-light);
+    min-height: 100vh;
+}
+
+/* ========================================
+   COMPONENTES GLOBAIS
+   ======================================== */
+
+/* Glass Morphism Effect */
+.bg-glass {
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 20, 147, 0.2);
+}
+
+/* Navbar Global */
+.navbar-light .navbar-nav .nav-link {
+    color: var(--text-light) !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: var(--primary-pink) !important;
+}
+
+/* Text Colors */
+.text-primary {
+    color: var(--primary-pink) !important;
+}
+
+.text-dark {
+    color: var(--text-light) !important;
+}
+
+/* Background Colors */
+.bg-light {
+    background: var(--dark-gray) !important;
+}
+
+/* Cards */
+.card {
+    background: var(--dark-gray);
+    border: 1px solid var(--light-gray);
+    color: var(--text-light);
+}
+
+.card-header {
+    background: var(--light-gray);
+    border-bottom: 1px solid var(--light-gray);
+    color: var(--text-light);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    z-index: 1050 !important;
+    background: var(--dark-gray);
+    border: 1px solid var(--light-gray);
+}
+
+.dropdown-item {
+    color: var(--text-light);
+}
+
+.dropdown-item:hover {
+    background: var(--light-gray);
+    color: var(--primary-pink);
+}
+
+/* Navbar z-index */
+.navbar {
+    z-index: 1030;
+}
+
+/* Form Controls */
+.form-control {
+    border-radius: 12px;
+    border: 2px solid var(--light-gray);
+    padding: 15px 20px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: var(--dark-gray);
+    color: var(--text-light);
+}
+
+.form-control:focus {
+    border-color: var(--primary-pink);
+    box-shadow: 0 0 0 0.2rem rgba(255, 20, 147, 0.25);
+    transform: translateY(-2px);
+    background: var(--dark-gray);
+    color: var(--text-light);
+}
+
+.form-control::placeholder {
+    color: var(--text-light);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 8px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-pink), var(--accent-blue));
+    border: none;
+    border-radius: 12px;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 20, 147, 0.4);
+    color: white;
+}
+
+/* Alerts */
+.alert {
+    border-radius: 12px;
+    border: none;
+    padding: 15px 20px;
+    background: var(--dark-gray);
+    border: 1px solid var(--light-gray);
+}
+
+.alert-danger {
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}
+
+.alert-success {
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+.alert-warning {
+    border-color: var(--warning-color);
+    color: var(--warning-color);
+}
+
+/* Form Text */
+.form-text {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.form-text.text-success {
+    color: var(--success-color) !important;
+}
+
+.form-text.text-danger {
+    color: var(--danger-color) !important;
+}
+
+.form-text.text-warning {
+    color: var(--warning-color) !important;
+}
+
+.form-control.is-valid {
+    border-color: var(--success-color);
+}
+
+.form-control.is-invalid {
+    border-color: var(--danger-color);
+}
+

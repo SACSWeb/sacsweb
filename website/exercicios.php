@@ -3,6 +3,7 @@ require_once '../config/config.php';
 requireLogin();
 
 $user = getCurrentUser();
+$userPreferences = getUserPreferences($user['id'] ?? null);
 $pdo = connectDatabase();
 
 // Buscar exercícios organizados por tipo e módulo
@@ -30,6 +31,21 @@ $exercicios_por_tipo = [
 
 foreach ($exercicios as $exercicio) {
     $exercicios_por_tipo[$exercicio['tipo']][] = $exercicio;
+}
+
+// Agrupar quizzes por módulo para quiz em lote
+$quizzes_por_modulo = [];
+foreach ($exercicios_por_tipo['quiz'] as $quiz) {
+    $modulo_id = $quiz['modulo_id'];
+    if (!isset($quizzes_por_modulo[$modulo_id])) {
+        $quizzes_por_modulo[$modulo_id] = [
+            'modulo_id' => $modulo_id,
+            'modulo_titulo' => $quiz['modulo_titulo'],
+            'modulo_nivel' => $quiz['modulo_nivel'],
+            'quizzes' => []
+        ];
+    }
+    $quizzes_por_modulo[$modulo_id]['quizzes'][] = $quiz;
 }
 
 // Buscar estatísticas dos exercícios
@@ -65,86 +81,21 @@ $exercicios_recomendados = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercícios - <?= SISTEMA_NOME ?></title>
+    <link rel="icon" href="<?= ASSETS_URL ?>/images/icone.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .bg-glass {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .exercise-card {
-            transition: all 0.3s ease;
-            border-radius: 15px;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .exercise-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        
-        .type-badge {
-            font-size: 0.8rem;
-            padding: 0.5rem 1rem;
-        }
-        
-        .difficulty-badge {
-            font-size: 0.7rem;
-            padding: 0.3rem 0.8rem;
-        }
-        
-        .progress-custom {
-            height: 8px;
-            border-radius: 10px;
-        }
-        
-        .navbar {
-            z-index: 1030;
-        }
-        
-        .dropdown-menu {
-            z-index: 1050 !important;
-        }
-        
-        .stats-card {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            transition: transform 0.3s ease;
-        }
-        
-        .stats-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .recommended-badge {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: #ff6b6b;
-            color: white;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-    </style>
+    <link href="<?= ASSETS_URL ?>/css/sacsweb-unified.css" rel="stylesheet">
+    <script>
+        window.SACSWEB_PREFERENCES = <?= json_encode($userPreferences, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
+    </script>
+    <script src="<?= ASSETS_URL ?>/js/preferences.js" defer></script>
 </head>
-<body>
+<body class="page-exercicios">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-glass navbar-light shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold" href="dashboard.php">
-                <i class="fas fa-shield-alt text-primary"></i> SACSWeb
+                <img src="<?= ASSETS_URL ?>/images/icone.png" alt="SACSWeb Logo" style="height: 40px; margin-right: 10px;"> <span class="text-primary">SACSWeb</span>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -168,6 +119,13 @@ $exercicios_recomendados = $stmt->fetchAll();
                             <i class="fas fa-tasks"></i> Exercícios
                         </a>
                     </li>
+                    <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ranking.php">
+                            <i class="fas fa-trophy"></i> Ranking
+                        </a>
+                    </li>
                 </ul>
                 
                 <ul class="navbar-nav">
@@ -189,7 +147,7 @@ $exercicios_recomendados = $stmt->fetchAll();
 
     <div class="container mt-4">
         <!-- Header -->
-        <div class="bg-glass rounded-4 p-5 text-center text-dark mb-4">
+        <div class="bg-glass rounded-4 p-5 text-center mb-4">
             <h1 class="display-4 fw-bold mb-3">
                 <i class="fas fa-tasks text-primary"></i> Exercícios Práticos
             </h1>
@@ -202,25 +160,25 @@ $exercicios_recomendados = $stmt->fetchAll();
                         <div class="col-md-3 mb-2">
                             <div class="bg-primary bg-opacity-10 rounded p-3">
                                 <h4 class="text-primary mb-0"><?= $stats_exercicios['total_exercicios'] ?></h4>
-                                <small class="text-muted">Total de Exercícios</small>
+                                <small>Total de Exercícios</small>
                             </div>
                         </div>
                         <div class="col-md-3 mb-2">
                             <div class="bg-success bg-opacity-10 rounded p-3">
                                 <h4 class="text-primary mb-0"><?= $stats_exercicios['exercicios_concluidos'] ?></h4>
-                                <small class="text-muted">Concluídos</small>
+                                <small>Concluídos</small>
                             </div>
                         </div>
                         <div class="col-md-3 mb-2">
                             <div class="bg-warning bg-opacity-10 rounded p-3">
                                 <h4 class="text-warning mb-0"><?= number_format($stats_exercicios['progresso_medio_exercicios'], 1) ?>%</h4>
-                                <small class="text-muted">Progresso Médio</small>
+                                <small>Progresso Médio</small>
                             </div>
                         </div>
                         <div class="col-md-3 mb-2">
                             <div class="bg-info bg-opacity-10 rounded p-3">
                                 <h4 class="text-info mb-0"><?= $stats_exercicios['total_pontos_exercicios'] ?></h4>
-                                <small class="text-muted">Total de Pontos</small>
+                                <small>Total de Pontos</small>
                             </div>
                         </div>
                     </div>
@@ -243,7 +201,7 @@ $exercicios_recomendados = $stmt->fetchAll();
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><?= htmlspecialchars($exercicio['titulo']) ?></h5>
-                            <p class="card-text text-muted"><?= htmlspecialchars($exercicio['descricao']) ?></p>
+                            <p class="card-text"><?= htmlspecialchars($exercicio['descricao']) ?></p>
                             
                             <div class="mb-3">
                                 <span class="badge bg-<?= $exercicio['tipo'] === 'quiz' ? 'info' : ($exercicio['tipo'] === 'codigo' ? 'warning' : 'secondary') ?> type-badge">
@@ -254,7 +212,7 @@ $exercicios_recomendados = $stmt->fetchAll();
                                 </span>
                             </div>
                             
-                            <small class="text-muted d-block mb-2">
+                            <small class="d-block mb-2">
                                 <i class="fas fa-book"></i> <?= htmlspecialchars($exercicio['modulo_titulo']) ?>
                             </small>
                             
@@ -296,14 +254,60 @@ $exercicios_recomendados = $stmt->fetchAll();
             </div>
         </div>
 
-        <!-- Exercícios por Tipo -->
+        <!-- Quizzes Agrupados por Módulo -->
+        <?php if (!empty($quizzes_por_modulo)): ?>
+        <div class="exercise-section mb-4" data-type="quiz">
+            <div class="bg-glass rounded-4 p-4">
+                <h3 class="mb-4">
+                    <i class="fas fa-question-circle text-info"></i> Quizzes por Módulo
+                    <span class="badge bg-secondary ms-2"><?= count($quizzes_por_modulo) ?> módulos</span>
+                </h3>
+                
+                <div class="row">
+                    <?php foreach ($quizzes_por_modulo as $modulo_data): ?>
+                        <?php 
+                        $total_quizzes = count($modulo_data['quizzes']);
+                        $pontos_totais = array_sum(array_column($modulo_data['quizzes'], 'pontos'));
+                        ?>
+                        <div class="col-lg-6 mb-3">
+                            <div class="card exercise-card h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title mb-0">
+                                            <i class="fas fa-book text-primary"></i> 
+                                            <?= htmlspecialchars($modulo_data['modulo_titulo']) ?>
+                                        </h5>
+                                        <span class="badge bg-<?= $modulo_data['modulo_nivel'] === 'iniciante' ? 'success' : ($modulo_data['modulo_nivel'] === 'intermediario' ? 'warning' : 'danger') ?> difficulty-badge">
+                                            <?= ucfirst($modulo_data['modulo_nivel']) ?>
+                                        </span>
+                                    </div>
+                                    
+                                    <p class="card-text mb-3">
+                                        <i class="fas fa-list-ol"></i> <strong><?= $total_quizzes ?></strong> questões
+                                        <span class="ms-3"><i class="fas fa-star"></i> <strong><?= $pontos_totais ?></strong> pontos totais</span>
+                                    </p>
+                                    
+                                    <div class="d-grid">
+                                        <a href="quiz_modulo.php?id=<?= $modulo_data['modulo_id'] ?>" class="btn btn-primary">
+                                            <i class="fas fa-play-circle"></i> Fazer Quiz Completo
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <!-- Outros Tipos de Exercícios -->
         <?php foreach ($exercicios_por_tipo as $tipo => $exercicios_tipo): ?>
+            <?php if ($tipo === 'quiz') continue; // Já mostramos quizzes acima ?>
         <div class="exercise-section mb-4" data-type="<?= $tipo ?>">
             <div class="bg-glass rounded-4 p-4">
                 <h3 class="mb-4">
-                    <?php if ($tipo === 'quiz'): ?>
-                        <i class="fas fa-question-circle text-info"></i> Exercícios de Quiz
-                    <?php elseif ($tipo === 'codigo'): ?>
+                        <?php if ($tipo === 'codigo'): ?>
                         <i class="fas fa-code text-warning"></i> Exercícios de Código
                     <?php else: ?>
                         <i class="fas fa-book text-secondary"></i> Exercícios Teóricos
@@ -312,7 +316,7 @@ $exercicios_recomendados = $stmt->fetchAll();
                 </h3>
                 
                 <?php if (empty($exercicios_tipo)): ?>
-                    <p class="text-muted text-center">Nenhum exercício deste tipo disponível.</p>
+                        <p class="text-center">Nenhum exercício deste tipo disponível.</p>
                 <?php else: ?>
                     <div class="row">
                         <?php foreach ($exercicios_tipo as $exercicio): ?>
@@ -326,33 +330,20 @@ $exercicios_recomendados = $stmt->fetchAll();
                                         </span>
                                     </div>
                                     
-                                    <p class="card-text text-muted"><?= htmlspecialchars($exercicio['descricao']) ?></p>
+                                        <p class="card-text"><?= htmlspecialchars($exercicio['descricao']) ?></p>
                                     
                                     <div class="mb-3">
-                                        <small class="text-muted">
+                                            <small>
                                             <i class="fas fa-book"></i> <?= htmlspecialchars($exercicio['modulo_titulo']) ?>
                                         </small>
                                     </div>
                                     
-                                    <?php if ($exercicio['progresso_usuario'] > 0): ?>
-                                        <div class="mb-3">
-                                            <small class="text-muted">Progresso: <?= $exercicio['progresso_usuario'] ?>%</small>
-                                            <div class="progress progress-custom">
-                                                <div class="progress-bar bg-success" style="width: <?= $exercicio['progresso_usuario'] ?>%"></div>
-                                            </div>
-                                        </div>
-                                    <?php endif; ?>
-                                    
                                     <div class="d-flex justify-content-between align-items-center">
                                         <a href="exercicio.php?id=<?= $exercicio['id'] ?>" class="btn btn-primary btn-sm">
-                                            <?php if ($exercicio['progresso_usuario'] > 0): ?>
-                                                <i class="fas fa-play"></i> Continuar
-                                            <?php else: ?>
                                                 <i class="fas fa-play"></i> Iniciar
-                                            <?php endif; ?>
                                         </a>
                                         
-                                        <small class="text-muted">
+                                            <small>
                                             <i class="fas fa-clock"></i> <?= $exercicio['tempo_estimado'] ?? 15 ?> min
                                         </small>
                                     </div>
@@ -370,7 +361,7 @@ $exercicios_recomendados = $stmt->fetchAll();
         <div class="text-center mt-5">
             <div class="bg-glass rounded-4 p-4">
                 <h4 class="mb-3">Precisa de ajuda?</h4>
-                <p class="text-muted mb-4">Se você tiver dúvidas sobre algum exercício, consulte o módulo correspondente ou entre em contato com o suporte.</p>
+                <p class="mb-4">Se você tiver dúvidas sobre algum exercício, consulte o módulo correspondente ou entre em contato com o suporte.</p>
                 <div class="d-flex justify-content-center gap-3">
                     <a href="modulos.php" class="btn btn-outline-primary">
                         <i class="fas fa-graduation-cap"></i> Ver Módulos

@@ -65,7 +65,7 @@ ini_set('display_errors', 1);
                             <i class="fas fa-shield-alt"></i> SACSWeb
                         </h1>
                         <h4>Instalação do Sistema</h4>
-                        <p class="text-muted">Simulador de Ataque Cibernético para Sistemas Web</p>
+                        <p class="text-light">Simulador de Ataque Cibernético para Sistemas Web</p>
                     </div>
 
                     <?php

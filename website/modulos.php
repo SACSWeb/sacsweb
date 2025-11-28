@@ -3,6 +3,7 @@ require_once '../config/config.php';
 requireLogin();
 
 $user = getCurrentUser();
+$userPreferences = getUserPreferences($user['id'] ?? null);
 $pdo = connectDatabase();
 
 // Buscar módulos organizados por nível
@@ -50,66 +51,21 @@ $stats = $stmt->fetch();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Módulos de Aprendizado - <?= SISTEMA_NOME ?></title>
+    <link rel="icon" type="image/png" href="<?= ASSETS_URL ?>/images/icone.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .bg-glass {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .level-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            border-radius: 15px;
-        }
-        
-        .level-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-        
-        .level-iniciante { border-left: 5px solid #28a745; }
-        .level-intermediario { border-left: 5px solid #ffc107; }
-        .level-avancado { border-left: 5px solid #dc3545; }
-        
-        .module-item {
-            transition: all 0.3s ease;
-            border-radius: 10px;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .module-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .progress-custom {
-            height: 8px;
-            border-radius: 10px;
-        }
-        
-        .navbar {
-            z-index: 1030;
-        }
-        
-        .dropdown-menu {
-            z-index: 1050 !important;
-        }
-    </style>
+    <link href="<?= ASSETS_URL ?>/css/sacsweb-unified.css" rel="stylesheet">
+    <script>
+        window.SACSWEB_PREFERENCES = <?= json_encode($userPreferences, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
+    </script>
+    <script src="<?= ASSETS_URL ?>/js/preferences.js" defer></script>
 </head>
-<body>
+<body class="page-modulos">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-glass navbar-light shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold" href="dashboard.php">
-                <i class="fas fa-shield-alt text-primary"></i> SACSWeb
+                <img src="<?= ASSETS_URL ?>/images/icone.png" alt="SACSWeb Logo" style="height: 40px; margin-right: 10px;"> <span class="text-primary">SACSWeb</span>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -133,6 +89,13 @@ $stats = $stmt->fetch();
                             <i class="fas fa-tasks"></i> Exercícios
                         </a>
                     </li>
+                    <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ranking.php">
+                            <i class="fas fa-trophy"></i> Ranking
+                        </a>
+                    </li>
                 </ul>
                 
                 <ul class="navbar-nav">
@@ -154,7 +117,7 @@ $stats = $stmt->fetch();
 
     <div class="container mt-4">
         <!-- Header -->
-        <div class="bg-glass rounded-4 p-5 text-center text-dark mb-4">
+        <div class="bg-glass rounded-4 p-5 text-center mb-4">
             <h1 class="display-4 fw-bold mb-3">
                 <i class="fas fa-graduation-cap text-primary"></i> Módulos de Aprendizado
             </h1>
@@ -167,25 +130,25 @@ $stats = $stmt->fetch();
                         <div class="col-md-3 mb-2">
                             <div class="bg-primary bg-opacity-10 rounded p-3">
                                 <h4 class="text-primary mb-0"><?= $stats['total_modulos'] ?></h4>
-                                <small class="text-muted">Total de Módulos</small>
+                                <small>Total de Módulos</small>
                             </div>
                         </div>
                         <div class="col-md-3 mb-2">
                             <div class="bg-success bg-opacity-10 rounded p-3">
                                 <h4 class="text-success mb-0"><?= $stats['modulos_concluidos'] ?></h4>
-                                <small class="text-muted">Concluídos</small>
+                                <small>Concluídos</small>
                             </div>
                         </div>
                         <div class="col-md-3 mb-2">
                             <div class="bg-warning bg-opacity-10 rounded p-3">
                                 <h4 class="text-warning mb-0"><?= number_format($stats['progresso_medio'], 1) ?>%</h4>
-                                <small class="text-muted">Progresso Médio</small>
+                                <small>Progresso Médio</small>
                             </div>
                         </div>
                         <div class="col-md-3 mb-2">
                             <div class="bg-info bg-opacity-10 rounded p-3">
                                 <h4 class="text-info mb-0"><?= $stats['total_pontos'] ?></h4>
-                                <small class="text-muted">Total de Pontos</small>
+                                <small>Total de Pontos</small>
                             </div>
                         </div>
                     </div>
@@ -203,7 +166,7 @@ $stats = $stmt->fetch();
                             <i class="fas fa-seedling text-success" style="font-size: 3rem;"></i>
                         </div>
                         <h3 class="card-title text-success fw-bold">🌱 Nível Iniciante</h3>
-                        <p class="card-text text-muted">Fundamentos de Segurança Web</p>
+                        <p class="card-text">Fundamentos de Segurança Web</p>
                         <div class="d-grid">
                             <button class="btn btn-outline-success" type="button" data-bs-toggle="collapse" data-bs-target="#nivel-iniciante">
                                 <i class="fas fa-chevron-down"></i> Ver Módulos
@@ -221,7 +184,7 @@ $stats = $stmt->fetch();
                             <i class="fas fa-bolt text-warning" style="font-size: 3rem;"></i>
                         </div>
                         <h3 class="card-title text-warning fw-bold">⚡ Nível Intermediário</h3>
-                        <p class="card-text text-muted">Exploração e Boas Práticas</p>
+                        <p class="card-text">Exploração e Boas Práticas</p>
                         <div class="d-grid">
                             <button class="btn btn-outline-warning" type="button" data-bs-toggle="collapse" data-bs-target="#nivel-intermediario">
                                 <i class="fas fa-chevron-down"></i> Ver Módulos
@@ -239,7 +202,7 @@ $stats = $stmt->fetch();
                             <i class="fas fa-shield-alt text-danger" style="font-size: 3rem;"></i>
                         </div>
                         <h3 class="card-title text-danger fw-bold">🛡️ Nível Avançado</h3>
-                        <p class="card-text text-muted">Pentest e Defesas Modernas</p>
+                        <p class="card-text">Pentest e Defesas Modernas</p>
                         <div class="d-grid">
                             <button class="btn btn-outline-danger" type="button" data-bs-toggle="collapse" data-bs-target="#nivel-avancado">
                                 <i class="fas fa-chevron-down"></i> Ver Módulos
@@ -267,17 +230,17 @@ $stats = $stmt->fetch();
                     </div>
                     <div class="card-body">
                         <?php if (empty($modulos_nivel)): ?>
-                            <p class="text-muted text-center">Nenhum módulo disponível neste nível.</p>
+                            <p class="text-center">Nenhum módulo disponível neste nível.</p>
                         <?php else: ?>
                             <?php foreach ($modulos_nivel as $modulo): ?>
-                                <div class="module-item p-3 mb-3 bg-white rounded">
+                                <div class="module-item p-3 mb-3 rounded">
                                     <div class="row align-items-center">
                                         <div class="col-md-8">
                                             <h5 class="mb-2">
                                                 <i class="fas fa-book text-primary"></i>
                                                 <?= htmlspecialchars($modulo['titulo']) ?>
                                             </h5>
-                                            <p class="text-muted mb-2"><?= htmlspecialchars($modulo['descricao']) ?></p>
+                                            <p class="mb-2"><?= htmlspecialchars($modulo['descricao']) ?></p>
                                             <div class="d-flex align-items-center gap-3">
                                                 <span class="badge bg-<?= $modulo['tipo_ataque'] === 'XSS' ? 'warning' : ($modulo['tipo_ataque'] === 'SQL Injection' ? 'danger' : 'info') ?>">
                                                     <?= htmlspecialchars($modulo['tipo_ataque']) ?>
@@ -295,7 +258,7 @@ $stats = $stmt->fetch();
                                         <div class="col-md-4 text-end">
                                             <?php if ($modulo['progresso_usuario'] > 0): ?>
                                                 <div class="mb-2">
-                                                    <small class="text-muted">Progresso: <?= $modulo['progresso_usuario'] ?>%</small>
+                                                    <small>Progresso: <?= $modulo['progresso_usuario'] ?>%</small>
                                                     <div class="progress progress-custom">
                                                         <div class="progress-bar bg-success" style="width: <?= $modulo['progresso_usuario'] ?>%"></div>
                                                     </div>
@@ -323,7 +286,7 @@ $stats = $stmt->fetch();
         <div class="text-center mt-5">
             <div class="bg-glass rounded-4 p-4">
                 <h4 class="mb-3">Pronto para começar sua jornada?</h4>
-                <p class="text-muted mb-4">Escolha um módulo do nível iniciante para dar os primeiros passos na segurança cibernética.</p>
+                <p class="mb-4">Escolha um módulo do nível iniciante para dar os primeiros passos na segurança cibernética.</p>
                 <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="collapse" data-bs-target="#nivel-iniciante">
                     <i class="fas fa-rocket"></i> Começar Agora
                 </button>

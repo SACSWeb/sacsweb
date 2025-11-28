@@ -1,0 +1,61 @@
+/**
+ * SACSWeb Educacional - Estilos da Página de Módulo Individual
+ * Estilos específicos para visualização de módulo individual
+ * Versão: 2.1.0
+ */
+
+.module-header {
+    background: linear-gradient(135deg, var(--primary-pink), var(--accent-blue));
+    color: white;
+    border-radius: 15px;
+}
+
+.content-section {
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    border: 1px solid var(--light-gray);
+    background: var(--dark-gray);
+    color: var(--text-light);
+}
+
+.content-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.progress-custom {
+    height: 12px;
+    border-radius: 10px;
+}
+
+.code-block {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 4px solid #007bff;
+}
+
+.warning-box {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 4px solid #ffc107;
+}
+
+.info-box {
+    background: #d1ecf1;
+    border: 1px solid #bee5eb;
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 4px solid #17a2b8;
+}
+
+.danger-box {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 4px solid #dc3545;
+}
+

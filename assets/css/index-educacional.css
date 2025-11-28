@@ -1,0 +1,97 @@
+/**
+ * SACSWeb Educacional - Estilos da Página Inicial
+ * Estilos específicos para a página index-educacional.php
+ * Versão: 2.1.0
+ */
+
+body { 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+    min-height: 100vh; 
+}
+
+.hero-section { 
+    background: rgba(255,255,255,0.95); 
+    border-radius: 20px; 
+    backdrop-filter: blur(10px);
+    margin-bottom: 2rem;
+}
+
+.feature-card { 
+    background: rgba(255,255,255,0.9); 
+    border-radius: 15px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.stats-card { 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+    color: white; 
+    border-radius: 15px;
+}
+
+.login-form { 
+    background: rgba(255,255,255,0.95); 
+    border-radius: 15px; 
+    backdrop-filter: blur(10px);
+}
+
+.btn-primary { 
+    background: #667eea; 
+    border-color: #667eea; 
+}
+
+.btn-primary:hover { 
+    background: #5a6fd8; 
+    border-color: #5a6fd8; 
+}
+
+.navbar-brand { 
+    font-weight: bold; 
+    font-size: 1.5rem; 
+}
+
+.hero-title { 
+    font-size: 3rem; 
+    font-weight: bold; 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.feature-icon { 
+    font-size: 3rem; 
+    color: #667eea; 
+    margin-bottom: 1rem; 
+}
+
+.progress-ring { 
+    width: 120px; 
+    height: 120px; 
+    margin: 0 auto; 
+}
+
+.progress-ring circle { 
+    fill: none; 
+    stroke: #667eea; 
+    stroke-width: 8; 
+    stroke-linecap: round; 
+    transform: rotate(-90deg); 
+    transform-origin: 50% 50%; 
+}
+
+.progress-ring .progress-bg { 
+    stroke: #e9ecef; 
+}
+
+.progress-ring .progress-fill { 
+    stroke-dasharray: 283; 
+    stroke-dashoffset: 283; 
+    transition: stroke-dashoffset 0.5s ease; 
+}
+

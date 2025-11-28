@@ -1,6 +1,6 @@
 <?php
 /**
- * SACSWeb Educacional - Página Principal
+ * SACSWeb Educacional - Homepage
  * Sistema para Ensino de Ataques Cibernéticos e Proteções
  * TCC - Foco Educacional
  */
@@ -11,633 +11,848 @@ require_once 'config/config.php';
 if (isLoggedIn()) {
     redirect('/sacsweb/website/dashboard.php');
 }
-
-$messages = getFlashMessages();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SACSWeb Educacional - Aprendendo Segurança Cibernética</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/images/icone.png">
+    <title>SACSWeb - Sistema Educacional de Segurança Cibernética</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --accent-color: #f093fb;
-            --danger-color: #ff6b6b;
-            --success-color: #51cf66;
-            --warning-color: #ffd43b;
+            --primary-pink: #FF1493;
+            --primary-pink-light: #FF69B4;
+            --dark-bg: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --light-gray: #2a2a2a;
+            --text-light: #e0e0e0;
+            --text-muted: #888;
+            --accent-blue: #00BFFF;
+            --accent-purple: #9370DB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
         }
 
-        .hero-section {
-            background: rgba(255, 255, 255, 0.1);
+        /* Navbar */
+        .navbar {
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 60px 40px;
-            text-align: center;
+            border-bottom: 1px solid rgba(255, 20, 147, 0.2);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-blue) !important;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 500;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-pink) !important;
+        }
+
+        .btn-login {
+            background: var(--primary-pink);
             color: white;
-            margin-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: none;
+            padding: 0.6rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-login:hover {
+            background: var(--primary-pink-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.4);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-gray) 100%);
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 20, 147, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 191, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(147, 112, 219, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 400;
         }
 
-        .auth-container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 600px;
         }
 
-        .form-control {
-            border-radius: 12px;
-            border: 2px solid #e9ecef;
-            padding: 15px 20px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-            transform: translateY(-2px);
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        .btn-hero {
+            background: var(--primary-pink);
+            color: white;
             border: none;
-            border-radius: 12px;
-            padding: 15px 30px;
-            font-size: 16px;
+            padding: 1rem 3rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 1rem;
         }
 
-        .btn-primary:hover {
+        .btn-hero:hover {
+            background: var(--primary-pink-light);
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5);
+            color: white;
         }
 
-        .btn-outline-primary {
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            border-radius: 12px;
-            padding: 15px 30px;
-            font-size: 16px;
+        .btn-hero-outline {
+            background: transparent;
+            color: var(--primary-pink);
+            border: 2px solid var(--primary-pink);
+            padding: 1rem 3rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .btn-outline-primary:hover {
-            background: var(--primary-color);
+        .btn-hero-outline:hover {
+            background: var(--primary-pink);
             color: white;
             transform: translateY(-3px);
         }
 
-        .nav-tabs {
-            border: none;
-            margin-bottom: 30px;
+        /* Circuit Background */
+        .circuit-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                linear-gradient(90deg, transparent 0%, rgba(255, 20, 147, 0.3) 50%, transparent 100%),
+                linear-gradient(0deg, transparent 0%, rgba(0, 191, 255, 0.3) 50%, transparent 100%);
+            background-size: 100px 100px;
+            animation: circuitMove 20s linear infinite;
         }
 
-        .nav-tabs .nav-link {
-            border: none;
-            border-radius: 12px;
-            margin-right: 10px;
-            padding: 15px 30px;
-            font-weight: 600;
-            color: #6c757d;
-            transition: all 0.3s ease;
+        @keyframes circuitMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
         }
 
-        .nav-tabs .nav-link.active {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            position: relative;
         }
 
-        .nav-tabs .nav-link:hover {
-            transform: translateY(-2px);
-        }
-
-        .features-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            margin-top: 40px;
-            color: white;
-        }
-
-        .feature-card {
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
             text-align: center;
-            padding: 20px;
-            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Cards */
+        .feature-card {
+            background: var(--dark-gray);
+            border: 1px solid rgba(255, 20, 147, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            height: 100%;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-pink), var(--accent-blue));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-pink);
+            box-shadow: 0 20px 40px rgba(255, 20, 147, 0.2);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--accent-color);
+            font-size: 3.5rem;
+            color: var(--primary-pink);
+            margin-bottom: 1.5rem;
         }
 
-        .cyber-particles {
-            position: fixed;
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .feature-description {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Objectives Section */
+        .objectives-section {
+            background: var(--dark-gray);
+            position: relative;
+        }
+
+        .objective-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 20, 147, 0.05);
+            border-left: 4px solid var(--primary-pink);
+            border-radius: 10px;
+        }
+
+        .objective-icon {
+            font-size: 2rem;
+            color: var(--primary-pink);
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .objective-content h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .objective-content p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* What We Deliver Section */
+        .deliver-section {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-gray) 100%);
+        }
+
+        .deliver-card {
+            background: var(--light-gray);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .deliver-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-pink);
+            box-shadow: 0 15px 35px rgba(255, 20, 147, 0.3);
+        }
+
+        .deliver-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .deliver-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .deliver-description {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--accent-blue) 100%);
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
         }
 
-        .particle {
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-cta {
+            background: white;
+            color: var(--primary-pink);
+            border: none;
+            padding: 1.2rem 4rem;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            color: var(--primary-pink);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-bg);
+            border-top: 1px solid rgba(255, 20, 147, 0.2);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-pink);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .btn-hero, .btn-hero-outline {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+                margin-right: 0;
+            }
+        }
+
+        /* Animated Background Elements */
+        .floating-shapes {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.3);
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite;
+        }
+
+        .shape-1 {
+            width: 200px;
+            height: 200px;
+            background: var(--primary-pink);
             border-radius: 50%;
-            animation: float 6s infinite linear;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            background: var(--accent-blue);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            top: 60%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+
+        .shape-3 {
+            width: 100px;
+            height: 100px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 10s;
         }
 
         @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
         }
-
-        .alert {
-            border-radius: 12px;
-            border: none;
-            padding: 15px 20px;
-        }
-
-        .form-text {
-            font-size: 14px;
-            color: #6c757d;
-        }
-
-        .password-strength {
-            height: 5px;
-            border-radius: 3px;
-            margin-top: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .strength-weak { background: var(--danger-color); width: 25%; }
-        .strength-medium { background: var(--warning-color); width: 50%; }
-        .strength-strong { background: var(--success-color); width: 75%; }
-        .strength-very-strong { background: var(--success-color); width: 100%; }
     </style>
 </head>
 <body>
-    <!-- Partículas de fundo -->
-    <div class="cyber-particles" id="particles"></div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/images/icone.png" alt="SACSWeb Logo" style="height: 50px; margin-right: 10px;"> SACSWeb
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border: 1px solid var(--primary-pink); color: var(--primary-pink);">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#objetivos">Objetivos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#entregas">O que Entregamos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="website/login.php" class="btn-login">
+                            <i class="fas fa-sign-in-alt"></i> Entrar
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <div class="container py-5">
-        <!-- Seção Hero -->
-        <div class="hero-section">
-            <h1 class="hero-title">
-                <i class="fas fa-shield-alt"></i> SACSWeb Educacional
-            </h1>
-            <p class="hero-subtitle">
-                Aprenda sobre ataques cibernéticos e como se proteger deles através de 
-                <strong>explicações teóricas</strong> e <strong>demonstrações práticas</strong>
-            </p>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="feature-card">
-                                <div class="feature-icon">
-                                    <i class="fas fa-book-open"></i>
-                                </div>
-                                <h5>Teoria</h5>
-                                <small>Entenda como e por que os ataques acontecem</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="feature-card">
-                                <div class="feature-icon">
-                                    <i class="fas fa-code"></i>
-                                </div>
-                                <h5>Prática</h5>
-                                <small>Veja vulnerabilidades em código real</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="feature-card">
-                                <div class="feature-icon">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <h5>Proteção</h5>
-                                <small>Aprenda a se defender</small>
-                            </div>
-                        </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="circuit-bg"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">
+                        SEGURANÇA<br>
+                        <span style="color: var(--text-light);">CIBERNÉTICA</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        ETHICAL HACKING, FORENSICS & DEVSECOPS
+                    </p>
+                    <p class="hero-description">
+                        Sistema educacional completo para aprender sobre ataques cibernéticos, 
+                        vulnerabilidades web e técnicas de proteção através de teoria e prática.
+                    </p>
+                    <div>
+                        <a href="website/login.php" class="btn-hero">
+                            <i class="fas fa-rocket"></i> Começar Agora
+                        </a>
+                        <a href="#sobre" class="btn-hero-outline">
+                            <i class="fas fa-info-circle"></i> Saiba Mais
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div style="font-size: 15rem; opacity: 0.1; line-height: 1;">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Container de Autenticação -->
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="auth-container">
-                    <!-- Mensagens de erro/sucesso -->
-                    <?php if (isset($messages['error'])): ?>
-                        <div class="alert alert-danger">
-                            <i class="fas fa-exclamation-triangle"></i> <?= htmlspecialchars($messages['error']) ?>
+    <!-- Sobre Section -->
+    <section id="sobre" class="section">
+        <div class="container">
+            <h2 class="section-title">O que é o <span style="color: var(--primary-pink);">SACSWeb</span>?</h2>
+            <p class="section-subtitle">
+                Uma plataforma educacional inovadora desenvolvida como Trabalho de Conclusão de Curso (TCC) 
+                para ensinar segurança cibernética de forma prática e interativa.
+            </p>
+
+            <div class="row g-4 mt-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-open"></i>
                         </div>
-                    <?php endif; ?>
-
-                    <?php if (isset($messages['success'])): ?>
-                        <div class="alert alert-success">
-                            <i class="fas fa-check-circle"></i> <?= htmlspecialchars($messages['success']) ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <!-- Abas de Login/Registro -->
-                    <ul class="nav nav-tabs" id="authTabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab">
-                                <i class="fas fa-sign-in-alt"></i> Entrar
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab">
-                                <i class="fas fa-user-plus"></i> Registrar
-                            </button>
-                        </li>
-                    </ul>
-
-                    <!-- Conteúdo das Abas -->
-                    <div class="tab-content" id="authTabsContent">
-                        <!-- Aba de Login -->
-                        <div class="tab-pane fade show active" id="login" role="tabpanel">
-                            <form method="POST" action="auth/login.php" id="loginForm">
-                                <div class="mb-3">
-                                    <label for="loginEmail" class="form-label">
-                                        <i class="fas fa-envelope"></i> Email ou Nome de Usuário
-                                    </label>
-                                    <input type="text" class="form-control" id="loginEmail" name="email" required>
-                                    <div class="form-text">
-                                        Use "admin" para acessar como administrador
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="loginPassword" class="form-label">
-                                        <i class="fas fa-lock"></i> Senha
-                                    </label>
-                                    <input type="password" class="form-control" id="loginPassword" name="senha" required>
-                                    <div class="form-text">
-                                        Senha padrão do admin: "admin123"
-                                    </div>
-                                </div>
-
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="rememberMe" name="lembrar">
-                                    <label class="form-check-label" for="rememberMe">
-                                        Lembrar de mim
-                                    </label>
-                                </div>
-
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-sign-in-alt"></i> Entrar no Sistema
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <!-- Aba de Registro -->
-                        <div class="tab-pane fade" id="register" role="tabpanel">
-                            <form method="POST" action="auth/register.php" id="registerForm">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="registerNome" class="form-label">
-                                                <i class="fas fa-user"></i> Nome Completo
-                                            </label>
-                                            <input type="text" class="form-control" id="registerNome" name="nome" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="registerEmail" class="form-label">
-                                                <i class="fas fa-envelope"></i> Email
-                                            </label>
-                                            <input type="email" class="form-control" id="registerEmail" name="email" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="registerUsername" class="form-label">
-                                        <i class="fas fa-at"></i> Nome de Usuário
-                                    </label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="registerUsername" name="username" required>
-                                        <button class="btn btn-outline-primary" type="button" id="checkUsernameBtn">
-                                            Verificar
-                                        </button>
-                                    </div>
-                                    <div class="form-text" id="usernameHelp">
-                                        Mínimo 3 caracteres, apenas letras, números e underscore
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="registerPassword" class="form-label">
-                                                <i class="fas fa-lock"></i> Senha
-                                            </label>
-                                            <input type="password" class="form-control" id="registerPassword" name="senha" required>
-                                            <div class="password-strength" id="passwordStrength"></div>
-                                            <div class="form-text">
-                                                Mínimo 8 caracteres
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="registerConfirmPassword" class="form-label">
-                                                <i class="fas fa-lock"></i> Confirmar Senha
-                                            </label>
-                                            <input type="password" class="form-control" id="registerConfirmPassword" name="confirmar_senha" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="registerNivel" class="form-label">
-                                        <i class="fas fa-graduation-cap"></i> Nível de Conhecimento
-                                    </label>
-                                    <select class="form-control" id="registerNivel" name="nivel_conhecimento" required>
-                                        <option value="">Selecione seu nível</option>
-                                        <option value="iniciante">Iniciante - Primeiro contato com segurança</option>
-                                        <option value="intermediario">Intermediário - Algum conhecimento básico</option>
-                                        <option value="avancado">Avançado - Experiência em TI/segurança</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="aceitarTermos" name="aceitar_termos" required>
-                                    <label class="form-check-label" for="aceitarTermos">
-                                        Aceito os <a href="#" data-bs-toggle="modal" data-bs-target="#termosModal">termos de uso</a> e 
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#privacidadeModal">política de privacidade</a>
-                                    </label>
-                                </div>
-
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-user-plus"></i> Criar Conta
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                        <h3 class="feature-title">Aprendizado Teórico</h3>
+                        <p class="feature-description">
+                            Compreenda os conceitos fundamentais de segurança cibernética através de 
+                            explicações detalhadas sobre vulnerabilidades, ataques e proteções.
+                        </p>
                     </div>
-
-                    <hr class="my-4">
-
-                    <!-- Informações adicionais -->
-                    <div class="text-center">
-                        <h6 class="text-muted mb-3">
-                            <i class="fas fa-info-circle"></i> Sobre o SACSWeb Educacional
-                        </h6>
-                        <p class="text-muted small">
-                            Este sistema foi desenvolvido como TCC para ensinar sobre segurança cibernética de forma 
-                            <strong>teórica</strong> e <strong>prática</strong>. Aprenda sobre ataques como SQL Injection, 
-                            XSS, Phishing e muito mais através de módulos interativos e demonstrações de código.
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="feature-title">Demonstrações Práticas</h3>
+                        <p class="feature-description">
+                            Veja vulnerabilidades em ação através de exemplos de código real, 
+                            compreendendo como os ataques funcionam na prática.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Técnicas de Proteção</h3>
+                        <p class="feature-description">
+                            Aprenda como se defender contra ataques cibernéticos através de 
+                            boas práticas e implementações seguras de código.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Modal Termos de Uso -->
-    <div class="modal fade" id="termosModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Termos de Uso - SACSWeb Educacional</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    <!-- Objetivos Section -->
+    <section id="objetivos" class="section objectives-section">
+        <div class="container">
+            <h2 class="section-title">Nossos <span style="color: var(--primary-pink);">Objetivos</span></h2>
+            <p class="section-subtitle">
+                O SACSWeb foi desenvolvido com objetivos claros de educação e conscientização sobre segurança cibernética.
+            </p>
+
+            <div class="row mt-5">
+                <div class="col-lg-6">
+                    <div class="objective-item">
+                        <div class="objective-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="objective-content">
+                            <h4>Educação Acessível</h4>
+                            <p>
+                                Tornar o aprendizado de segurança cibernética acessível a todos, 
+                                desde iniciantes até profissionais que desejam aprimorar seus conhecimentos.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <h6>1. Uso Educacional</h6>
-                    <p>Este sistema é destinado exclusivamente para fins educacionais e de aprendizado sobre segurança cibernética.</p>
-                    
-                    <h6>2. Responsabilidade</h6>
-                    <p>O usuário é responsável por usar o conhecimento adquirido de forma ética e legal.</p>
-                    
-                    <h6>3. Conteúdo</h6>
-                    <p>Todo o conteúdo é fornecido "como está" para fins educacionais.</p>
+                <div class="col-lg-6">
+                    <div class="objective-item">
+                        <div class="objective-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="objective-content">
+                            <h4>Conscientização</h4>
+                            <p>
+                                Conscientizar sobre a importância da segurança cibernética e os riscos 
+                                reais que existem no ambiente digital atual.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <div class="col-lg-6">
+                    <div class="objective-item">
+                        <div class="objective-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="objective-content">
+                            <h4>Aprendizado Prático</h4>
+                            <p>
+                                Fornecer uma experiência prática e interativa, permitindo que os alunos 
+                                vejam vulnerabilidades em ação e aprendam como corrigi-las.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="objective-item">
+                        <div class="objective-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="objective-content">
+                            <h4>Acompanhamento de Progresso</h4>
+                            <p>
+                                Permitir que os alunos acompanhem seu progresso através de um sistema 
+                                de pontuação e histórico de atividades completadas.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Modal Política de Privacidade -->
-    <div class="modal fade" id="privacidadeModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Política de Privacidade - SACSWeb Educacional</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    <!-- O que Entregamos Section -->
+    <section id="entregas" class="section deliver-section">
+        <div class="container">
+            <h2 class="section-title">O que <span style="color: var(--primary-pink);">Entregamos</span></h2>
+            <p class="section-subtitle">
+                Uma plataforma completa com módulos educacionais, exercícios interativos e ferramentas de aprendizado.
+            </p>
+
+            <div class="row g-4 mt-5">
+                <div class="col-md-4">
+                    <div class="deliver-card">
+                        <div class="deliver-number">6</div>
+                        <h3 class="deliver-title">Módulos Educacionais</h3>
+                        <p class="deliver-description">
+                            Módulos completos sobre segurança web, XSS, SQL Injection, 
+                            validação de dados e muito mais.
+                        </p>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <h6>1. Coleta de Dados</h6>
-                    <p>Coletamos apenas dados necessários para o funcionamento do sistema educacional.</p>
-                    
-                    <h6>2. Uso dos Dados</h6>
-                    <p>Os dados são usados exclusivamente para acompanhar o progresso educacional.</p>
-                    
-                    <h6>3. Segurança</h6>
-                    <p>Implementamos medidas de segurança para proteger suas informações.</p>
+                <div class="col-md-4">
+                    <div class="deliver-card">
+                        <div class="deliver-number">21+</div>
+                        <h3 class="deliver-title">Exercícios Interativos</h3>
+                        <p class="deliver-description">
+                            Quizzes com 4 alternativas, exercícios práticos e avaliações 
+                            para testar seu conhecimento.
+                        </p>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <div class="col-md-4">
+                    <div class="deliver-card">
+                        <div class="deliver-number">100%</div>
+                        <h3 class="deliver-title">Gratuito e Acessível</h3>
+                        <p class="deliver-description">
+                            Plataforma totalmente gratuita e de código aberto, 
+                            desenvolvida para fins educacionais.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="deliver-card">
+                        <div class="deliver-icon" style="font-size: 3rem; color: var(--primary-pink); margin-bottom: 1rem;">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h3 class="deliver-title">Código Demonstrativo</h3>
+                        <p class="deliver-description">
+                            Exemplos de código vulnerável e seguro para compreender 
+                            as diferenças na prática.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="deliver-card">
+                        <div class="deliver-icon" style="font-size: 3rem; color: var(--primary-pink); margin-bottom: 1rem;">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="deliver-title">Sistema de Pontuação</h3>
+                        <p class="deliver-description">
+                            Acompanhe seu progresso através de pontos e conquistas 
+                            ao completar módulos e exercícios.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="deliver-card">
+                        <div class="deliver-icon" style="font-size: 3rem; color: var(--primary-pink); margin-bottom: 1rem;">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h3 class="deliver-title">Histórico Completo</h3>
+                        <p class="deliver-description">
+                            Visualize todo seu histórico de atividades, módulos concluídos 
+                            e desempenho ao longo do tempo.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <div class="container">
+                <h2 class="cta-title">Pronto para Começar?</h2>
+                <p class="cta-description">
+                    Junte-se ao SACSWeb e comece sua jornada no aprendizado de segurança cibernética hoje mesmo.
+                </p>
+                <a href="website/login.php" class="btn-cta">
+                    <i class="fas fa-rocket"></i> Acessar Plataforma
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                <strong>SACSWeb Educacional</strong> - Sistema para Ensino de Ataques Cibernéticos e Proteções
+            </p>
+            <p class="footer-text">
+                Desenvolvido como Trabalho de Conclusão de Curso (TCC)
+            </p>
+            <div class="footer-links">
+                <a href="#sobre">Sobre</a>
+                <a href="#objetivos">Objetivos</a>
+                <a href="#entregas">O que Entregamos</a>
+                <a href="website/login.php">Login</a>
+            </div>
+            <p class="footer-text mt-4" style="font-size: 0.9rem;">
+                © 2025 SACSWeb. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Criar partículas de fundo
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Validação de força da senha
-        function checkPasswordStrength(password) {
-            const strengthBar = document.getElementById('passwordStrength');
-            let strength = 0;
-            
-            if (password.length >= 8) strength++;
-            if (/[a-z]/.test(password)) strength++;
-            if (/[A-Z]/.test(password)) strength++;
-            if (/[0-9]/.test(password)) strength++;
-            if (/[^A-Za-z0-9]/.test(password)) strength++;
-
-            strengthBar.className = 'password-strength';
-            if (strength <= 2) strengthBar.classList.add('strength-weak');
-            else if (strength <= 3) strengthBar.classList.add('strength-medium');
-            else if (strength <= 4) strengthBar.classList.add('strength-strong');
-            else strengthBar.classList.add('strength-very-strong');
-        }
-
-        // Validação de formulários
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-
-            // Validação da senha
-            const passwordInput = document.getElementById('registerPassword');
-            if (passwordInput) {
-                passwordInput.addEventListener('input', function() {
-                    checkPasswordStrength(this.value);
-                });
-            }
-
-            // Validação do formulário de registro
-            const registerForm = document.getElementById('registerForm');
-            const registerUsername = document.getElementById('registerUsername');
-            const checkUsernameBtn = document.getElementById('checkUsernameBtn');
-            const usernameHelp = document.getElementById('usernameHelp');
-            let lastCheckedUsername = '';
-            let usernameAvailable = false;
-
-            async function checkUsernameAvailability(username) {
-                if (!username || username.length < 3) {
-                    usernameHelp.className = 'form-text text-danger';
-                    usernameHelp.textContent = 'Informe um nome de usuário válido (mínimo 3 caracteres)';
-                    usernameAvailable = false;
-                    return;
-                }
-                usernameHelp.className = 'form-text';
-                usernameHelp.textContent = 'Verificando...';
-                try {
-                    const response = await fetch('auth/check_username.php?username=' + encodeURIComponent(username), {
-                        headers: { 'Accept': 'application/json' }
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
-                    const data = await response.json();
-                    if (data.available) {
-                        usernameHelp.className = 'form-text text-success';
-                        usernameHelp.textContent = 'Nome de usuário disponível';
-                        usernameAvailable = true;
-                    } else {
-                        usernameHelp.className = 'form-text text-danger';
-                        usernameHelp.textContent = data.message || 'Este nome de usuário já está em uso';
-                        usernameAvailable = false;
-                    }
-                } catch (e) {
-                    usernameHelp.className = 'form-text text-danger';
-                    usernameHelp.textContent = 'Erro ao verificar disponibilidade. Tente novamente.';
-                    usernameAvailable = false;
                 }
-                lastCheckedUsername = username;
-            }
+            });
+        });
 
-            if (checkUsernameBtn && registerUsername) {
-                checkUsernameBtn.addEventListener('click', function() {
-                    checkUsernameAvailability(registerUsername.value.trim());
-                });
-                registerUsername.addEventListener('blur', function() {
-                    const current = registerUsername.value.trim();
-                    if (current && current !== lastCheckedUsername) {
-                        checkUsernameAvailability(current);
-                    }
-                });
-                registerUsername.addEventListener('input', function() {
-                    usernameAvailable = false; // invalidar verificação ao digitar
-                    usernameHelp.className = 'form-text';
-                    usernameHelp.textContent = 'Mínimo 3 caracteres, apenas letras, números e underscore';
-                });
-            }
-            if (registerForm) {
-                registerForm.addEventListener('submit', function(e) {
-                    const password = document.getElementById('registerPassword').value;
-                    const confirmPassword = document.getElementById('registerConfirmPassword').value;
-                    const username = registerUsername ? registerUsername.value.trim() : '';
-                    
-                    if (password !== confirmPassword) {
-                        e.preventDefault();
-                        alert('As senhas não coincidem!');
-                        return false;
-                    }
-                    
-                    if (password.length < 8) {
-                        e.preventDefault();
-                        alert('A senha deve ter pelo menos 8 caracteres!');
-                        return false;
-                    }
-
-                    if (username.length < 3 || !/^[_a-zA-Z0-9]+$/.test(username)) {
-                        e.preventDefault();
-                        alert('Informe um nome de usuário válido (mínimo 3 caracteres, apenas letras, números e underscore)');
-                        return false;
-                    }
-
-                    if (!usernameAvailable) {
-                        e.preventDefault();
-                        alert('Por favor, verifique a disponibilidade do nome de usuário.');
-                        return false;
-                    }
-                });
-            }
-
-            // Validação do formulário de login
-            const loginForm = document.getElementById('loginForm');
-            if (loginForm) {
-                loginForm.addEventListener('submit', function(e) {
-                    const email = document.getElementById('loginEmail').value;
-                    const password = document.getElementById('loginPassword').value;
-                    
-                    if (!email || !password) {
-                        e.preventDefault();
-                        alert('Preencha todos os campos!');
-                        return false;
-                    }
-                });
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
             }
         });
     </script>
 </body>
-</html> 
+</html>
