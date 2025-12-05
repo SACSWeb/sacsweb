@@ -354,7 +354,7 @@ $userPreferences = getUserPreferences($_SESSION['user_id'] ?? null);
                                         <i class="fas fa-envelope"></i> Email ou Nome de Usuário
                                     </label>
                                     <input type="text" 
-                                           class="form-control" 
+                                           class="form-control text-light" 
                                            id="loginEmail" 
                                            name="email" 
                                            value="<?= htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>" 
@@ -367,7 +367,7 @@ $userPreferences = getUserPreferences($_SESSION['user_id'] ?? null);
                                         <i class="fas fa-lock"></i> Senha
                                     </label>
                                     <input type="password" 
-                                           class="form-control" 
+                                           class="form-control text-light" 
                                            id="loginPassword" 
                                            name="senha" 
                                            required
@@ -405,7 +405,7 @@ $userPreferences = getUserPreferences($_SESSION['user_id'] ?? null);
                                         <i class="fas fa-user"></i> Nome Completo
                                     </label>
                                     <input type="text" 
-                                           class="form-control" 
+                                           class="form-control text-light" 
                                            id="registerNome" 
                                            name="nome" 
                                            value="<?= htmlspecialchars($_POST['nome'] ?? '', ENT_QUOTES, 'UTF-8') ?>" 
@@ -419,7 +419,7 @@ $userPreferences = getUserPreferences($_SESSION['user_id'] ?? null);
                                         <i class="fas fa-envelope"></i> Email
                                     </label>
                                     <input type="email" 
-                                           class="form-control" 
+                                           class="form-control text-light" 
                                            id="registerEmail" 
                                            name="email" 
                                            value="<?= htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>" 
@@ -436,7 +436,7 @@ $userPreferences = getUserPreferences($_SESSION['user_id'] ?? null);
                                         <i class="fas fa-at"></i> Nome de Usuário
                                     </label>
                                     <input type="text" 
-                                           class="form-control" 
+                                           class="form-control text-light" 
                                            id="registerUsername" 
                                            name="username" 
                                            value="<?= htmlspecialchars($_POST['username'] ?? '', ENT_QUOTES, 'UTF-8') ?>" 
@@ -457,7 +457,7 @@ $userPreferences = getUserPreferences($_SESSION['user_id'] ?? null);
                                                 <i class="fas fa-lock"></i> Senha
                                             </label>
                                             <input type="password" 
-                                                   class="form-control" 
+                                                   class="form-control text-light" 
                                                    id="registerPassword" 
                                                    name="senha" 
                                                    required
@@ -475,7 +475,7 @@ $userPreferences = getUserPreferences($_SESSION['user_id'] ?? null);
                                                 <i class="fas fa-lock"></i> Confirmar Senha
                                             </label>
                                             <input type="password" 
-                                                   class="form-control" 
+                                                   class="form-control text-light" 
                                                    id="registerConfirmPassword" 
                                                    name="confirmar_senha" 
                                                    required
@@ -489,7 +489,7 @@ $userPreferences = getUserPreferences($_SESSION['user_id'] ?? null);
                                     <label for="registerNivel" class="form-label">
                                         <i class="fas fa-graduation-cap"></i> Nível de Conhecimento
                                     </label>
-                                    <select class="form-control" 
+                                    <select class="form-control text-light" 
                                             id="registerNivel" 
                                             name="nivel_conhecimento" 
                                             required>
