@@ -182,6 +182,17 @@ sacsweb/
 
 ---
 
+## 👥 Criadores Originais
+
+Este projeto foi desenvolvido como parte do TCC por:
+
+- **Jhonnatan Paulino Dantas de Almeida**
+- **Diogo Sousa Carvalho**
+- **Lívia Pavan Oliveira**
+- **Gabriel Oliveira Chaves dos Santos**
+
+---
+
 **⚠️ Aviso Legal**: Este sistema é destinado exclusivamente para fins educacionais. O uso para testes de segurança em sistemas reais sem autorização é ilegal e não é responsabilidade dos desenvolvedores.
 
 **🎓 SACSWeb Educacional** - Transformando o aprendizado em segurança cibernética!
